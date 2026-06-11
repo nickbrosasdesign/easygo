@@ -1,2 +1,2 @@
 # easygo
-All1 app for getting around Seattle
+Ally app for getting around Seattle
