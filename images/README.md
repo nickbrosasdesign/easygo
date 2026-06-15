@@ -14,4 +14,4 @@ Use these when a small or collapsed logo should be used
 
 ## Map Images
 Used only for prototype purpose
-- Screenshot 2024-05-23 at 3.28 1.png
+- map-image-for-prototype.png
