@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EasyGo — PM Deliverables</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Lexend+Mega:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal-50: #E1F5EE;
+    --teal-100: #9FE1CB;
+    --teal-600: #0F6E56;
+    --teal-800: #085041;
+    --purple-50: #EEEDFE;
+    --purple-600: #534AB7;
+    --blue-50: #E6F1FB;
+    --blue-600: #185FA5;
+    --amber-50: #FAEEDA;
+    --amber-600: #854F0B;
+    --coral-50: #FAECE7;
+    --coral-600: #993C1D;
+    --gray-50: #F1EFE8;
+    --gray-100: #D3D1C7;
+    --gray-400: #888780;
+    --gray-600: #5F5E5A;
+    --gray-800: #444441;
+    --gray-900: #2C2C2A;
+    --pink-50: #FBEAF0;
+    --pink-600: #993556;
+    --text: #1a1a18;
+    --text-secondary: #5F5E5A;
+    --border: #D3D1C7;
+    --bg: #ffffff;
+    --bg-secondary: #F7F6F2;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--bg-secondary);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── Layout ── */
+  .shell { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+    padding: 2rem 1.25rem;
+  }
+
+  .sidebar-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 2rem; }
+  .sidebar-logo-icon {
+    width: 36px; height: 36px; border-radius: var(--radius-sm);
+    background: var(--teal-50); display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .sidebar-logo-name { font-family: 'Lexend Mega', sans-serif; font-size: 16px; font-weight: 400; letter-spacing: -0.02em; }
+  .sidebar-logo-sub { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+
+  .sidebar-section { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); margin: 1.5rem 0 0.5rem; }
+  .sidebar-link {
+    display: block; padding: 6px 10px; font-size: 13px; color: var(--text-secondary);
+    border-radius: var(--radius-sm); text-decoration: none; transition: all 0.15s;
+    margin-bottom: 2px;
+  }
+  .sidebar-link:hover { background: var(--bg-secondary); color: var(--text); }
+  .sidebar-link.active { background: var(--teal-50); color: var(--teal-600); font-weight: 500; }
+
+  .main { flex: 1; padding: 3rem 2.5rem; max-width: 840px; }
+
+  /* ── Typography ── */
+  h1 { font-family: 'Lexend Mega', sans-serif; font-size: 28px; font-weight: 400; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+  h2 { font-size: 18px; font-weight: 500; margin-bottom: 1rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+  h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  h3 { font-size: 14px; font-weight: 500; margin-bottom: 0.5rem; color: var(--text); }
+  p { margin-bottom: 0.75rem; color: var(--text-secondary); font-size: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+  }
+  .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem; }
+  .card-icon {
+    width: 30px; height: 30px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+  }
+
+  /* ── Grid ── */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Metrics ── */
+  .metric { background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 1rem; }
+  .metric-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray-400); margin-bottom: 4px; }
+  .metric-value { font-size: 22px; font-weight: 500; color: var(--text); }
+
+  /* ── Badges ── */
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+  .badge-teal { background: var(--teal-50); color: var(--teal-600); }
+  .badge-amber { background: var(--amber-50); color: var(--amber-600); }
+  .badge-coral { background: var(--coral-50); color: var(--coral-600); }
+  .badge-blue { background: var(--blue-50); color: var(--blue-600); }
+  .badge-purple { background: var(--purple-50); color: var(--purple-600); }
+  .badge-gray { background: var(--gray-50); color: var(--gray-600); }
+  .badge-pink { background: var(--pink-50); color: var(--pink-600); }
+
+  /* ── Feature rows ── */
+  .feature-row { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .feature-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .feature-row-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; color: var(--gray-400); }
+  .feature-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; color: var(--text); }
+  .feature-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ── Priority list ── */
+  .priority-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .priority-row:last-child { border-bottom: none; }
+  .priority-num {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--bg-secondary);
+    font-size: 12px; font-weight: 500; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--text);
+  }
+  .priority-label { font-size: 14px; font-weight: 500; color: var(--text); }
+  .priority-sub { font-size: 12px; color: var(--text-secondary); }
+
+  /* ── Timeline ── */
+  .timeline { padding-left: 0; }
+  .timeline-item { display: flex; gap: 16px; margin-bottom: 1.5rem; }
+  .timeline-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal-600); margin-top: 5px; }
+  .timeline-dot.future { background: var(--border); }
+  .timeline-line { width: 1px; background: var(--border); flex: 1; margin-top: 4px; min-height: 32px; }
+  .timeline-phase { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 2px; }
+  .timeline-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; color: var(--text); }
+  .timeline-body { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ── Journey map ── */
+  .journey-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 1rem; overflow-x: auto; }
+  .journey-phase-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1rem; min-width: 130px;
+  }
+  .journey-phase-num { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .journey-phase-title { font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--text); }
+  .journey-phase-body { font-size: 12px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 8px; }
+  .journey-emotion { font-size: 20px; }
+
+  /* ── Roadmap chips ── */
+  .roadmap-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .roadmap-row:last-child { border-bottom: none; }
+  .roadmap-phase { font-size: 12px; font-weight: 500; color: var(--text-secondary); width: 72px; flex-shrink: 0; padding-top: 3px; }
+  .roadmap-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .roadmap-chip { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: var(--radius-sm); }
+
+  /* ── Goal rows ── */
+  .goal-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .goal-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .goal-icon { width: 34px; height: 34px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .goal-title { font-size: 14px; font-weight: 500; margin-bottom: 2px; color: var(--text); }
+  .goal-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ── Section label ── */
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 1rem; }
+
+  /* ── Page header ── */
+  .page-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .page-meta { font-size: 12px; color: var(--text-secondary); margin-top: 6px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .page-meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* ── Print ── */
+  @media print {
+    .sidebar { display: none; }
+    .main { padding: 2rem; max-width: 100%; }
+    .card { break-inside: avoid; }
+    h2 { break-before: page; }
+  }
+
+  @media (max-width: 640px) {
+    .sidebar { display: none; }
+    .main { padding: 1.5rem 1rem; }
+    .journey-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- Sidebar -->
+  <nav class="sidebar" aria-label="Document navigation">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">♿</div>
+      <div>
+        <div class="sidebar-logo-name">EasyGo</div>
+        <div class="sidebar-logo-sub">PM Deliverables</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">Overview</div>
+    <a href="#brd" class="sidebar-link active">Business requirements</a>
+    <a href="#goals" class="sidebar-link">Project goals</a>
+    <a href="#timeline" class="sidebar-link">Timeline</a>
+
+    <div class="sidebar-section">Product</div>
+    <a href="#features-mvp" class="sidebar-link">MVP features</a>
+    <a href="#features-future" class="sidebar-link">Future features</a>
+    <a href="#roadmap" class="sidebar-link">Roadmap</a>
+
+    <div class="sidebar-section">Design & Research</div>
+    <a href="#journey" class="sidebar-link">Journey map</a>
+    <a href="#research" class="sidebar-link">Research synthesis</a>
+    <a href="#routing" class="sidebar-link">Routing logic</a>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <div class="page-header">
+      <div class="section-label">PM Deliverables</div>
+      <h1>EasyGo</h1>
+      <div style="font-size: 15px; color: var(--text-secondary); margin-top: 4px;">Accessible routing for people with mobility and cognitive disabilities</div>
+      <div class="page-meta">
+        <span>📅 Started Feb 2026</span>
+        <span class="badge badge-teal">Active</span>
+        <span class="badge badge-blue">MVP phase</span>
+      </div>
+    </div>
+
+    <!-- ── BRD ── -->
+    <h2 id="brd">Business requirements</h2>
+
+    <div class="grid-3">
+      <div class="metric"><div class="metric-label">Project start</div><div class="metric-value" style="font-size:16px;">Feb 2026</div></div>
+      <div class="metric"><div class="metric-label">Current phase</div><div class="metric-value" style="font-size:16px;">MVP</div></div>
+      <div class="metric"><div class="metric-label">User interviews</div><div class="metric-value">5</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--teal-50);">🧭</div>
+        <h3 style="margin:0;">Product vision</h3>
+      </div>
+      <p>EasyGo is an accessible routing application that helps people with mobility and cognitive disabilities navigate their environment safely and confidently. Routes are generated using a priority-ranked logic that accounts for hazards, terrain, accessibility infrastructure, and cognitive simplicity — putting safety first at every decision point.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--pink-50);">👥</div>
+        <h3 style="margin:0;">Target users</h3>
+      </div>
+      <p>People navigating with <strong>mobility disabilities</strong> (wheelchair users, limited mobility), <strong>cognitive disabilities</strong> (wayfinding challenges, processing difficulties), and <strong>situational limitations</strong> (stroller, injury, temporary impairment).</p>
+      <p>Research interviewees: Andrew · Amanda · Kat · Jane · John</p>
+    </div>
+
+    <!-- ── Goals ── -->
+    <h2 id="goals">Project goals</h2>
+
+    <div class="card">
+      <div class="goal-row">
+        <div class="goal-icon" style="background:var(--teal-50);">🛡</div>
+        <div>
+          <div class="goal-title">Safety-first routing</div>
+          <div class="goal-desc">Routes prioritize avoiding hazards and construction before any other optimisation. A user should never encounter a blocked ramp or dangerous obstacle without prior warning.</div>
+        </div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-icon" style="background:var(--purple-50);">🧠</div>
+        <div>
+          <div class="goal-title">Low cognitive load</div>
+          <div class="goal-desc">Interface and route design minimise cognitive effort. Lexend typeface supports dyslexia accessibility. Navigation choices are simple and consistent throughout.</div>
+        </div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-icon" style="background:var(--blue-50);">⚙️</div>
+        <div>
+          <div class="goal-title">Disability-inclusive, not one-size-fits-all</div>
+          <div class="goal-desc">Accessibility toggles let users opt into features relevant to their specific needs. Accessible crosswalks, wheelchair access, and traffic signal preferences are user-controlled.</div>
+        </div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-icon" style="background:var(--amber-50);">🗺</div>
+        <div>
+          <div class="goal-title">Community hazard awareness</div>
+          <div class="goal-desc">Users can mark hazards for others, creating a crowd-sourced accessibility layer on top of standard map data. The product improves with every contribution.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Timeline ── -->
+    <h2 id="timeline">Project timeline</h2>
+
+    <div class="card">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <div><div class="timeline-phase">Feb 2026 — kick-off</div><div class="timeline-title">Project starts</div><div class="timeline-body">Research objectives defined. Interview list established: Andrew, Amanda, Kat, Jane, John.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <div><div class="timeline-phase">Discovery</div><div class="timeline-title">Research &amp; synthesis</div><div class="timeline-body">User interviews completed. Routing priority logic derived from synthesis. Cognitive load and typography decisions made — Lexend chosen as primary typeface.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <div><div class="timeline-phase">Design</div><div class="timeline-title">EasyGo Redesign 2026</div><div class="timeline-body">Figma redesign in progress. Journey maps, wireframes, and component library.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"><div class="timeline-dot future"></div></div>
+          <div><div class="timeline-phase">MVP</div><div class="timeline-title">Build &amp; launch</div><div class="timeline-body">Core route, saved, hazard marking, and overlay features. Accessibility toggles. WCAG-compliant UI throughout.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MVP Features ── -->
+    <h2 id="features-mvp">MVP features</h2>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--teal-50);">🗺</div>
+        <h3 style="margin:0;">Route</h3>
+        <span class="badge badge-teal" style="margin-left:auto;">Core</span>
+      </div>
+      <div class="feature-row">
+        <div class="feature-row-icon">📍</div>
+        <div><div class="feature-name">Start / end route</div><div class="feature-desc">User sets origin and destination via pin placement on map. Choose pin interaction confirms location before routing begins.</div></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-row-icon">ℹ️</div>
+        <div><div class="feature-name">Route details</div><div class="feature-desc">Summary panel showing distance, estimated time, steepness, and accessibility attributes of the chosen route.</div></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-row-icon">⚙️</div>
+        <div><div class="feature-name">Accessibility toggles</div><div class="feature-desc">Opt-in filters: accessible crosswalks, wheelchair access locations, traffic signals. Toggling re-runs the priority routing logic.</div></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-row-icon">⚠️</div>
+        <div><div class="feature-name">Mark hazards</div><div class="feature-desc">Users place hazard pins to flag obstacles for the community — broken pavement, blocked ramps, active construction, and more.</div></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-row-icon">🗂</div>
+        <div><div class="feature-name">View overlays</div><div class="feature-desc">Toggle map overlays for different accessibility data layers: steepness heat map, accessible infrastructure, hazard density.</div></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-row-icon">👁</div>
+        <div><div class="feature-name">View hazards</div><div class="feature-desc">Community-reported hazards displayed on map so users can see obstacles before and during navigation.</div></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-row-icon">🔖</div>
+        <div><div class="feature-name">Save route</div><div class="feature-desc">Users save frequently travelled routes for quick access in the Saved section.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--blue-50);">📂</div>
+        <h3 style="margin:0;">Saved</h3>
+        <span class="badge badge-blue" style="margin-left:auto;">Core</span>
+      </div>
+      <div class="feature-row" style="border:none; padding-bottom:0;">
+        <div class="feature-row-icon">📁</div>
+        <div><div class="feature-name">Saved routes library</div><div class="feature-desc">Library of previously saved routes. Tap to reload and navigate. Routes surface updated hazard and accessibility data automatically.</div></div>
+      </div>
+    </div>
+
+    <!-- ── Future Features ── -->
+    <h2 id="features-future">Future features</h2>
+
+    <div class="card" style="opacity: 0.8;">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--gray-50);">🔀</div>
+        <h3 style="margin:0;">Post-MVP</h3>
+        <span class="badge badge-gray" style="margin-left:auto;">Planned</span>
+      </div>
+      <div class="feature-row" style="border:none; padding-bottom:0;">
+        <div class="feature-row-icon">↔️</div>
+        <div><div class="feature-name">Alternate routes</div><div class="feature-desc">Surface 2–3 alternative route options ranked by the accessibility priority algorithm. Users can compare trade-offs and choose the route that fits their specific needs.</div></div>
+      </div>
+    </div>
+
+    <!-- ── Roadmap ── -->
+    <h2 id="roadmap">Product roadmap</h2>
+
+    <div class="card">
+      <div class="roadmap-row">
+        <div class="roadmap-phase">Discovery</div>
+        <div class="roadmap-chips">
+          <span class="roadmap-chip" style="background:var(--teal-50);color:var(--teal-600);">User interviews (5)</span>
+          <span class="roadmap-chip" style="background:var(--teal-50);color:var(--teal-600);">Research synthesis</span>
+          <span class="roadmap-chip" style="background:var(--teal-50);color:var(--teal-600);">Routing priority logic</span>
+        </div>
+      </div>
+      <div class="roadmap-row">
+        <div class="roadmap-phase">Design</div>
+        <div class="roadmap-chips">
+          <span class="roadmap-chip" style="background:var(--purple-50);color:var(--purple-600);">Journey maps</span>
+          <span class="roadmap-chip" style="background:var(--purple-50);color:var(--purple-600);">Wireframes</span>
+          <span class="roadmap-chip" style="background:var(--purple-50);color:var(--purple-600);">Figma redesign 2026</span>
+          <span class="roadmap-chip" style="background:var(--purple-50);color:var(--purple-600);">Lexend typography</span>
+        </div>
+      </div>
+      <div class="roadmap-row">
+        <div class="roadmap-phase">MVP build</div>
+        <div class="roadmap-chips">
+          <span class="roadmap-chip" style="background:var(--blue-50);color:var(--blue-600);">Route flow</span>
+          <span class="roadmap-chip" style="background:var(--blue-50);color:var(--blue-600);">Accessibility toggles</span>
+          <span class="roadmap-chip" style="background:var(--blue-50);color:var(--blue-600);">Hazard marking</span>
+          <span class="roadmap-chip" style="background:var(--blue-50);color:var(--blue-600);">Overlays</span>
+          <span class="roadmap-chip" style="background:var(--blue-50);color:var(--blue-600);">Save route</span>
+        </div>
+      </div>
+      <div class="roadmap-row">
+        <div class="roadmap-phase">Post-MVP</div>
+        <div class="roadmap-chips">
+          <span class="roadmap-chip" style="background:var(--gray-50);color:var(--gray-600);">Alternate routes</span>
+          <span class="roadmap-chip" style="background:var(--gray-50);color:var(--gray-600);">Hazard moderation</span>
+          <span class="roadmap-chip" style="background:var(--gray-50);color:var(--gray-600);">Transit integration</span>
+          <span class="roadmap-chip" style="background:var(--gray-50);color:var(--gray-600);">API / data partnerships</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Journey Map ── -->
+    <h2 id="journey">Journey map — planning a route</h2>
+
+    <div class="card" style="margin-bottom: 1rem;">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--pink-50);">🧑</div>
+        <h3 style="margin:0;">Persona: mobility-impaired urban commuter</h3>
+      </div>
+      <p>Wheelchair user navigating an unfamiliar neighbourhood. Needs to avoid steep terrain, confirm accessible crosswalks exist, and know about any blocked ramps in advance. Previous map apps have let them down.</p>
+    </div>
+
+    <div class="journey-grid">
+      <div class="journey-phase-card">
+        <div class="journey-phase-num" style="color:var(--teal-600);">Stage 1</div>
+        <div class="journey-phase-title">Awareness</div>
+        <div class="journey-phase-body">Hears about EasyGo via word of mouth or disability org. Skeptical — previous map apps ignored accessibility.</div>
+        <div class="journey-emotion" title="Skeptical">😐</div>
+      </div>
+      <div class="journey-phase-card">
+        <div class="journey-phase-num" style="color:var(--purple-600);">Stage 2</div>
+        <div class="journey-phase-title">Onboarding</div>
+        <div class="journey-phase-body">Opens app. Simple, low-cognitive UI. Enables wheelchair access + accessible crosswalk toggles.</div>
+        <div class="journey-emotion" title="Cautious optimism">🙂</div>
+      </div>
+      <div class="journey-phase-card">
+        <div class="journey-phase-num" style="color:var(--blue-600);">Stage 3</div>
+        <div class="journey-phase-title">Route planning</div>
+        <div class="journey-phase-body">Sets start and end pin. Views route details — steepness shown, crosswalks confirmed. No active hazards.</div>
+        <div class="journey-emotion" title="Relieved">😌</div>
+      </div>
+      <div class="journey-phase-card">
+        <div class="journey-phase-num" style="color:var(--amber-600);">Stage 4</div>
+        <div class="journey-phase-title">Navigation</div>
+        <div class="journey-phase-body">Follows route. Encounters a blocked ramp — marks it as a hazard. App notes it for future routing.</div>
+        <div class="journey-emotion" title="Frustrated but empowered">😤</div>
+      </div>
+      <div class="journey-phase-card">
+        <div class="journey-phase-num" style="color:var(--teal-600);">Stage 5</div>
+        <div class="journey-phase-title">Return</div>
+        <div class="journey-phase-body">Saves the route. Next visit opens saved routes instantly. Recommends the app to a peer.</div>
+        <div class="journey-emotion" title="Satisfied">😊</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon" style="background:var(--coral-50);">⚡</div><h3 style="margin:0;">Pain points &amp; opportunities</h3></div>
+      <div class="feature-row">
+        <div class="feature-row-icon">😟</div>
+        <div><div class="feature-name">Pain: existing maps ignore accessibility</div><div class="feature-desc">Standard mapping tools treat accessibility as an afterthought. No hazard data, no terrain priority, no toggleable preferences.</div></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-row-icon">😟</div>
+        <div><div class="feature-name">Pain: discovering hazards mid-trip</div><div class="feature-desc">Blocked ramps or broken pavement discovered in real-time with no re-route option is dangerous and deeply stressful.</div></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-row-icon">💡</div>
+        <div><div class="feature-name">Opportunity: community hazard layer</div><div class="feature-desc">Crowd-sourced hazard data turns every user into a contributor. The product improves for the whole community with every submission.</div></div>
+      </div>
+      <div class="feature-row" style="border:none; padding-bottom:0;">
+        <div class="feature-row-icon">💡</div>
+        <div><div class="feature-name">Opportunity: saved routes reduce friction</div><div class="feature-desc">Saving a trusted route removes the planning burden entirely for regular journeys — critical for users with cognitive disabilities.</div></div>
+      </div>
+    </div>
+
+    <!-- ── Research ── -->
+    <h2 id="research">Research synthesis</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-icon" style="background:var(--purple-50);">🧠</div><h3 style="margin:0;">Cognitive accessibility</h3></div>
+        <p>Not all disabilities are mobility-related. Cognitive disabilities affect wayfinding too. The interface must minimise cognitive load through simplicity, clear labels, and consistent patterns. <em>Source: WCAG guidance — to be cited.</em></p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon" style="background:var(--blue-50);">🔤</div><h3 style="margin:0;">Lexend typeface</h3></div>
+        <p>Lexend is a variable font researched for improved reading performance, particularly for users with dyslexia. Chosen as EasyGo's primary typeface. <em>Source: Lexend research — to be cited.</em></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon" style="background:var(--teal-50);">📋</div><h3 style="margin:0;">Interviews</h3></div>
+      <p style="font-size:13px;">5 interviews planned and conducted: <strong>Andrew · Amanda · Kat · Jane · John</strong>. Interview notes and detailed synthesis to be added to the Research doc. Direct quotes are needed to support the routing priority logic rankings.</p>
+    </div>
+
+    <!-- ── Routing Logic ── -->
+    <h2 id="routing">Routing priority logic</h2>
+
+    <p style="margin-bottom: 1rem;">Ranked highest to lowest. Route generation applies these in cascading order — a higher rule always overrides a lower one.</p>
+
+    <div class="card">
+      <div class="priority-row">
+        <div class="priority-num">1</div>
+        <div style="flex:1;"><div class="priority-label">Avoid marked hazards</div><div class="priority-sub">Obstacles, blocked ramps, debris reported by the community</div></div>
+        <span class="badge badge-coral">Critical</span>
+      </div>
+      <div class="priority-row">
+        <div class="priority-num">2</div>
+        <div style="flex:1;"><div class="priority-label">Avoid construction</div><div class="priority-sub">Active worksites and street closures</div></div>
+        <span class="badge badge-coral">Critical</span>
+      </div>
+      <div class="priority-row">
+        <div class="priority-num">3</div>
+        <div style="flex:1;"><div class="priority-label">Choose lowest steepness</div><div class="priority-sub">Minimise gradient for wheelchair and mobility aid users</div></div>
+        <span class="badge badge-amber">High</span>
+      </div>
+      <div class="priority-row">
+        <div class="priority-num">4</div>
+        <div style="flex:1;"><div class="priority-label">Accessible crosswalks</div><div class="priority-sub">Audible beaconing, APS signals — if toggled on by user</div></div>
+        <span class="badge badge-blue">Toggle</span>
+      </div>
+      <div class="priority-row">
+        <div class="priority-num">5</div>
+        <div style="flex:1;"><div class="priority-label">Wheelchair access locations</div><div class="priority-sub">Ramps, accessible entrances — if toggled on by user</div></div>
+        <span class="badge badge-blue">Toggle</span>
+      </div>
+      <div class="priority-row">
+        <div class="priority-num">6</div>
+        <div style="flex:1;"><div class="priority-label">Traffic signals present</div><div class="priority-sub">Controlled crossings preferred where available</div></div>
+        <span class="badge badge-gray">Optional</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-secondary);">
+      EasyGo PM Deliverables · Generated June 2026 · Started Feb 2026
+    </div>
+
+  </main>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.sidebar-link');
+  const sections = document.querySelectorAll('h2[id]');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
