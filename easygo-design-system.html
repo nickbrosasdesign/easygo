@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyGo — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="core.css" />
+</head>
+<body>
+<div class="shell">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <img src="images/logo-800-vector.png"
+           alt="EasyGo alt logo"
+           class="sidebar-brand-icon"
+           style="width:100px;height:33px;object-fit:cover;" />
+      <div>
+        <div class="sidebar-brand-name">EasyGo</div>
+        <div class="sidebar-brand-sub">Design System</div>
+      </div>
+    </div>
+
+    <div class="sidebar-group">Foundation</div>
+    <a href="#overview">Overview</a>
+    <a href="#colors">Colors</a>
+    <a href="#typography">Typography</a>
+    <a href="#layout">Layout &amp; Spacing</a>
+    <a href="#shapes">Shapes</a>
+
+    <div class="sidebar-group">Components</div>
+    <a href="#button">Button</a>
+    <a href="#toggle">Toggle</a>
+    <a href="#expandable-card">Expandable Card</a>
+    <a href="#saved-card">Saved Card</a>
+    <a href="#tooltip">Tooltip</a>
+    <a href="#inputs">Text Inputs</a>
+    <a href="#select">Select</a>
+    <a href="#checkbox-radio">Checkbox &amp; Radio</a>
+    <a href="#divider">Divider</a>
+    <a href="#pagination">Pagination</a>
+
+    <div class="sidebar-group">Patterns</div>
+    <a href="#navigation">Navigation</a>
+    <a href="#header">Header</a>
+    <a href="#map-markers">Map Markers</a>
+    <a href="#logo">Logo</a>
+    <a href="#settings-section">Settings Section</a>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="tag tag-grey" style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">Design System Documentation</div>
+      <h1>EasyGo Design System</h1>
+      <p>Component library and design tokens for EasyGo — an accessible routing app for people with mobility and cognitive disabilities.</p>
+      <div class="page-meta">
+        <span class="tag tag-blue">Figma: EasyGo Redesign 2026</span>
+        <span class="tag tag-grey">Lexend Typeface</span>
+        <span class="tag tag-grey">WCAG 2.1 AA</span>
+      </div>
+    </div>
+
+    <!-- ── OVERVIEW ── -->
+    <h2 class="section" id="overview">Overview</h2>
+    <p class="section-sub">Brand personality &amp; design principles</p>
+
+    <div class="component-block" style="line-height:1.7;">
+      <p style="color:var(--primitive-grey-500);font-size:14px;margin-bottom:1rem;">EasyGo's visual identity is built on clarity, trust, and empowerment. Every design decision prioritises low cognitive load — interactions are predictable, labels are explicit, and colour is used purposefully rather than decoratively.</p>
+      <p style="color:var(--primitive-grey-500);font-size:14px;margin-bottom:1rem;">The palette is anchored by a confident <strong style="color:var(--primitive-blue-400);">Navy Blue (#005299)</strong> that communicates reliability and authority, paired with a crisp white ground. A 4px grid governs all spacing. <strong>Lexend</strong> — chosen for its proven readability improvements for users with dyslexia — is the sole typeface used throughout the system.</p>
+      <p style="color:var(--primitive-grey-500);font-size:14px;">Corner radii are generous (up to 32px) to give the UI a friendly, approachable character while remaining professional. Interactions always surface focus states to support keyboard and switch-access navigation.</p>
+    </div>
+
+    <!-- ── COLORS ── -->
+    <h2 class="section" id="colors">Colors</h2>
+    <p class="section-sub">Primitive palette and semantic token mappings from Figma variables</p>
+
+    <div class="component-block">
+      <div class="component-label">Primitive Palette</div>
+      <div class="color-grid">
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#005299;"></div><div class="color-chip-info"><span class="color-chip-name">blue/400</span><span class="color-chip-hex">#005299</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#002a4e;"></div><div class="color-chip-info"><span class="color-chip-name">blue/500</span><span class="color-chip-hex">#002a4e</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#0489ff;"></div><div class="color-chip-info"><span class="color-chip-name">blue/300</span><span class="color-chip-hex">#0489ff</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#d1deee;"></div><div class="color-chip-info"><span class="color-chip-name">blue/100</span><span class="color-chip-hex">#d1deee</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#ffffff;border:1px solid #eee;"></div><div class="color-chip-info"><span class="color-chip-name">base/white</span><span class="color-chip-hex">#ffffff</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#111111;"></div><div class="color-chip-info"><span class="color-chip-name">base/black</span><span class="color-chip-hex">#111111</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#dbdbdb;"></div><div class="color-chip-info"><span class="color-chip-name">grey/100</span><span class="color-chip-hex">#dbdbdb</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#888888;"></div><div class="color-chip-info"><span class="color-chip-name">grey/300</span><span class="color-chip-hex">#888888</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#3b3a3a;"></div><div class="color-chip-info"><span class="color-chip-name">grey/500</span><span class="color-chip-hex">#3b3a3a</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#f2c85c;"></div><div class="color-chip-info"><span class="color-chip-name">yellow/200</span><span class="color-chip-hex">#f2c85c</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#f9b4ad;"></div><div class="color-chip-info"><span class="color-chip-name">red/100</span><span class="color-chip-hex">#f9b4ad</span></div></div>
+        <div class="color-chip"><div class="color-chip-swatch" style="background:#d31200;"></div><div class="color-chip-info"><span class="color-chip-name">red/300</span><span class="color-chip-hex">#d31200</span></div></div>
+      </div>
+
+      <div class="component-label">Semantic Token Mapping</div>
+      <div class="token-grid">
+
+        <!-- Background -->
+        <div class="token-card">
+          <h3>Background</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#ffffff;border:1px solid #eee;"></div><span class="token-name">background/primary</span><span class="token-value">→ base/white</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">background/secondary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">background/tertiary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#111111;"></div><span class="token-name">background/overlay</span><span class="token-value">→ base/black</span></div>
+        </div>
+
+        <!-- Body Text -->
+        <div class="token-card">
+          <h3>Body Text</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#111111;"></div><span class="token-name">body text/primary</span><span class="token-value">→ base/black</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">body text/secondary</span><span class="token-value">→ blue/400</span></div>
+        </div>
+
+        <!-- Heading Text -->
+        <div class="token-card">
+          <h3>Heading Text</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">heading text/primary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#111111;"></div><span class="token-name">heading text/secondary</span><span class="token-value">→ base/black</span></div>
+        </div>
+
+        <!-- Dialog (formerly Card) -->
+        <div class="token-card">
+          <h3>Dialog</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#ffffff;border:1px solid #eee;"></div><span class="token-name">dialog/background/primary</span><span class="token-value">→ base/white</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">dialog/background/secondary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">dialog/border/primary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">dialog/border/secondary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#111111;"></div><span class="token-name">dialog/text/primary</span><span class="token-value">→ base/black</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">dialog/text/secondary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#d1deee;"></div><span class="token-name">dialog/hover/primary</span><span class="token-value">→ blue/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#0489ff;"></div><span class="token-name">dialog/focus/primary</span><span class="token-value">→ blue/300</span></div>
+        </div>
+
+        <!-- Button -->
+        <div class="token-card">
+          <h3>Button</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">button/background/primary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#ffffff;border:1px solid #eee;"></div><span class="token-name">button/background/secondary</span><span class="token-value">→ base/white</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#dbdbdb;"></div><span class="token-name">button/background/disabled</span><span class="token-value">→ grey/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#d31200;"></div><span class="token-name">button/background/error</span><span class="token-value">→ red/300</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#f2c85c;"></div><span class="token-name">button/background/hazard</span><span class="token-value">→ yellow/200</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#ffffff;border:1px solid #eee;"></div><span class="token-name">button/text/primary</span><span class="token-value">→ base/white</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">button/text/secondary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#888888;"></div><span class="token-name">button/text/disabled</span><span class="token-value">→ grey/300</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#002a4e;"></div><span class="token-name">button/hover/primary</span><span class="token-value">→ blue/500</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#d1deee;"></div><span class="token-name">button/hover/secondary</span><span class="token-value">→ blue/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#0489ff;"></div><span class="token-name">button/focus/primary</span><span class="token-value">→ blue/300</span></div>
+        </div>
+
+        <!-- Toggle -->
+        <div class="token-card">
+          <h3>Toggle</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">toggle/background/on</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#dbdbdb;"></div><span class="token-name">toggle/background/off</span><span class="token-value">→ grey/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#888888;"></div><span class="token-name">toggle/background/disabled</span><span class="token-value">→ grey/300</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#002a4e;"></div><span class="token-name">toggle/hover/on</span><span class="token-value">→ blue/500</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#c7dfff;"></div><span class="token-name">toggle/hover/off</span><span class="token-value">→ blue/200</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#0489ff;"></div><span class="token-name">toggle/focus/on &amp; off</span><span class="token-value">→ blue/300</span></div>
+        </div>
+
+        <!-- Icons -->
+        <div class="token-card">
+          <h3>Icons</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">icons/primary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#ffffff;border:1px solid #eee;"></div><span class="token-name">icons/secondary</span><span class="token-value">→ base/white</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#111111;"></div><span class="token-name">icons/tertiary</span><span class="token-value">→ base/black</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#888888;"></div><span class="token-name">icons/disabled</span><span class="token-value">→ grey/300</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#f2c85c;"></div><span class="token-name">icons/hazard</span><span class="token-value">→ yellow/200</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#f9b4ad;"></div><span class="token-name">icons/error</span><span class="token-value">→ red/100</span></div>
+        </div>
+
+        <!-- Divider -->
+        <div class="token-card">
+          <h3>Divider</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">divider/primary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#111111;"></div><span class="token-name">divider/secondary</span><span class="token-value">→ base/black</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#ffffff;border:1px solid #eee;"></div><span class="token-name">divider/tertiary</span><span class="token-value">→ base/white</span></div>
+        </div>
+
+        <!-- Input -->
+        <div class="token-card">
+          <h3>Input</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#ffffff;border:1px solid #eee;"></div><span class="token-name">input/background/primary</span><span class="token-value">→ base/white</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#dbdbdb;"></div><span class="token-name">input/background/disabled</span><span class="token-value">→ grey/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#111111;"></div><span class="token-name">input/text/primary</span><span class="token-value">→ base/black</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#888888;"></div><span class="token-name">input/text/placeholder</span><span class="token-value">→ grey/300</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#888888;"></div><span class="token-name">input/text/disabled</span><span class="token-value">→ grey/300</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#111111;"></div><span class="token-name">input/border/primary</span><span class="token-value">→ base/black</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#dbdbdb;"></div><span class="token-name">input/border/disabled</span><span class="token-value">→ grey/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#d1deee;"></div><span class="token-name">input/hover/primary</span><span class="token-value">→ blue/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#0489ff;"></div><span class="token-name">input/focus/primary</span><span class="token-value">→ blue/300</span></div>
+        </div>
+
+        <!-- Route -->
+        <div class="token-card">
+          <h3>Route</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#d1deee;"></div><span class="token-name">route/primary</span><span class="token-value">→ blue/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">route/secondary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#0489ff;"></div><span class="token-name">route/tertiary</span><span class="token-value">→ blue/300</span></div>
+        </div>
+
+        <!-- Tooltip -->
+        <div class="token-card">
+          <h3>Tooltip</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#ffffff;border:1px solid #eee;"></div><span class="token-name">tooltip/background/primary</span><span class="token-value">→ base/white</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#d1deee;"></div><span class="token-name">tooltip/background/secondary</span><span class="token-value">→ blue/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#dbdbdb;"></div><span class="token-name">tooltip/background/tertiary</span><span class="token-value">→ grey/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#f2c85c;"></div><span class="token-name">tooltip/background/hazard</span><span class="token-value">→ yellow/200</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#f9b4ad;"></div><span class="token-name">tooltip/background/error</span><span class="token-value">→ red/100</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#111111;"></div><span class="token-name">tooltip/text/primary</span><span class="token-value">→ base/black</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">tooltip/border/primary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#0489ff;"></div><span class="token-name">tooltip/focus/primary</span><span class="token-value">→ blue/300</span></div>
+        </div>
+
+        <!-- Map Header -->
+        <div class="token-card">
+          <h3>Map Header</h3>
+          <div class="token-row"><div class="token-swatch" style="background:#005299;"></div><span class="token-name">map-header/background/primary</span><span class="token-value">→ blue/400</span></div>
+          <div class="token-row"><div class="token-swatch" style="background:#ffffff;border:1px solid #eee;"></div><span class="token-name">map-header/text/primary</span><span class="token-value">→ base/white</span></div>
+        </div>
+
+      </div><!-- /token-grid -->
+    </div>
+
+    <!-- ── TYPOGRAPHY ── -->
+    <h2 class="section" id="typography">Typography</h2>
+    <p class="section-sub">Lexend is the sole typeface — chosen for improved reading performance and dyslexia support.</p>
+
+    <div class="component-block">
+      <div class="type-scale">
+        <div class="type-row"><div class="type-row-meta token-value">heading/h1 · 32px · 700</div><div class="type-row-sample" style="font-size:32px;font-weight:700;">Heading 1</div></div>
+        <div class="type-row"><div class="type-row-meta token-value">heading/h2 · 28px · 700</div><div class="type-row-sample" style="font-size:28px;font-weight:700;">Heading 2</div></div>
+        <div class="type-row"><div class="type-row-meta token-value">heading/h3 · 24px · 700</div><div class="type-row-sample" style="font-size:24px;font-weight:700;">Heading 3</div></div>
+        <div class="type-row"><div class="type-row-meta token-value">heading/h4 · 20px · 700</div><div class="type-row-sample" style="font-size:20px;font-weight:700;">Heading 4</div></div>
+        <div class="type-row"><div class="type-row-meta token-value">heading/h5 · 16px · 700</div><div class="type-row-sample" style="font-size:16px;font-weight:700;">Heading 5</div></div>
+        <div class="type-row"><div class="type-row-meta token-value">body/primary · 16px · 400</div><div class="type-row-sample" style="font-size:16px;font-weight:400;">Body text — primary weight</div></div>
+        <div class="type-row"><div class="type-row-meta token-value">body/small · 14px · 400</div><div class="type-row-sample" style="font-size:14px;font-weight:400;">Body text — small</div></div>
+        <div class="type-row"><div class="type-row-meta token-value">body/caption · 12px · 400</div><div class="type-row-sample" style="font-size:12px;font-weight:400;">Caption / label text</div></div>
+        <div class="type-row"><div class="type-row-meta token-value">button/primary · 16px · 400</div><div class="type-row-sample" style="font-size:16px;font-weight:400;">Button — Primary</div></div>
+        <div class="type-row"><div class="type-row-meta token-value">button/small · 12px · 400</div><div class="type-row-sample" style="font-size:12px;font-weight:400;">Button — Small</div></div>
+      </div>
+    </div>
+
+    <!-- ── LAYOUT ── -->
+    <h2 class="section" id="layout">Layout &amp; Spacing</h2>
+    <p class="section-sub">4px grid system — all spacing values are multiples of 4.</p>
+
+    <div class="component-block">
+      <div class="component-label">Named Spacing Tokens</div>
+      <div class="spacing-scale">
+        <div class="spacing-row"><div class="spacing-label">spacing/xs → 4px</div><div class="spacing-bar" style="width:4px;"></div></div>
+        <div class="spacing-row"><div class="spacing-label">spacing/small → 8px</div><div class="spacing-bar" style="width:8px;"></div></div>
+        <div class="spacing-row"><div class="spacing-label">spacing/medium → 16px</div><div class="spacing-bar" style="width:16px;"></div></div>
+        <div class="spacing-row"><div class="spacing-label">spacing/24 → 24px</div><div class="spacing-bar" style="width:24px;"></div></div>
+        <div class="spacing-row"><div class="spacing-label">spacing/large → 32px</div><div class="spacing-bar" style="width:32px;"></div></div>
+      </div>
+    </div>
+
+    <!-- ── SHAPES ── -->
+    <h2 class="section" id="shapes">Shapes</h2>
+    <p class="section-sub">Corner radius scale</p>
+
+    <div class="component-block">
+      <div class="radius-grid">
+        <div class="radius-chip"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">corner-radius/small<br/>8px</div></div>
+        <div class="radius-chip"><div class="radius-box" style="border-radius:16px;"></div><div class="radius-label">corner-radius/medium<br/>16px</div></div>
+        <div class="radius-chip"><div class="radius-box" style="border-radius:32px;"></div><div class="radius-label">corner-radius/large<br/>32px</div></div>
+      </div>
+    </div>
+
+    <!-- ════════ COMPONENTS ════════ -->
+
+    <!-- ── BUTTON ── -->
+    <h2 class="section" id="button">Button</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>button</h3>
+        <p>Buttons should be used to indicate an action on a screen.<br><br>
+        <strong>Types:</strong> 1. <strong>Primary</strong> — main CTA &nbsp; 2. <strong>Secondary</strong> — important but not primary &nbsp; 3. <strong>Tertiary</strong> — less critical actions &nbsp; 4. <strong>Disabled</strong> — action not currently available &nbsp; 5. <strong>Icon-only</strong> — action communicated through a widely recognised icon<br><br>
+        <strong>Sizes:</strong> Primary (40px h, 8/16px padding, r16, 16px text) · Small (24px h, 4/8px padding, r8, 12px text)<br><br>
+        <strong>States:</strong> Default · Hover · Focus</p>
+      </div>
+
+      <div class="component-label">Primary type</div>
+      <div class="preview-area">
+        <button class="eg-btn eg-btn-primary eg-btn-primary-size">Button Text</button>
+        <button class="eg-btn eg-btn-primary eg-btn-primary-size" style="background:var(--color-button-hover-primary);border-color:var(--color-button-hover-primary);">Hover</button>
+        <button class="eg-btn eg-btn-primary eg-btn-primary-size" style="outline:2px solid var(--color-button-focus-primary);outline-offset:2px;">Focus</button>
+      </div>
+
+      <div class="component-label">Secondary type</div>
+      <div class="preview-area">
+        <button class="eg-btn eg-btn-secondary eg-btn-primary-size">Button Text</button>
+        <button class="eg-btn eg-btn-secondary eg-btn-primary-size" style="background:var(--color-button-hover-secondary);">Hover</button>
+      </div>
+
+      <div class="component-label">Tertiary type</div>
+      <div class="preview-area">
+        <button class="eg-btn eg-btn-tertiary eg-btn-primary-size">Button Text</button>
+        <button class="eg-btn eg-btn-tertiary eg-btn-primary-size" style="background:var(--color-button-hover-tertiary);">Hover</button>
+      </div>
+
+      <div class="component-label">Disabled type</div>
+      <div class="preview-area">
+        <button class="eg-btn eg-btn-disabled eg-btn-primary-size" disabled>Button Text</button>
+      </div>
+
+      <div class="component-label">Small size</div>
+      <div class="preview-area">
+        <button class="eg-btn eg-btn-primary eg-btn-small-size">Button</button>
+        <button class="eg-btn eg-btn-secondary eg-btn-small-size">Button</button>
+        <button class="eg-btn eg-btn-tertiary eg-btn-small-size">Button</button>
+        <button class="eg-btn eg-btn-disabled eg-btn-small-size" disabled>Button</button>
+      </div>
+
+      <div class="component-label">Icon-only</div>
+      <div class="preview-area">
+        <button class="eg-btn eg-btn-primary eg-btn-icon" style="width:48px;height:48px;" aria-label="Add">
+          <svg width="16" height="16" fill="white" viewBox="0 0 16 16"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+        </button>
+        <button class="eg-btn eg-btn-secondary eg-btn-icon" style="width:48px;height:48px;" aria-label="Add">
+          <svg width="16" height="16" fill="#005299" viewBox="0 0 16 16"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+        </button>
+        <button class="eg-btn eg-btn-primary eg-btn-icon" style="width:28px;height:28px;border-radius:8px;" aria-label="Add">
+          <svg width="12" height="12" fill="white" viewBox="0 0 16 16"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── TOGGLE ── -->
+    <h2 class="section" id="toggle">Toggle</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>toggle</h3>
+        <p>The toggle component is used to visually represent whether something is on/off (true/false). This can apply to other elements such as settings. Has similar use to a checkbox input, however, it should not be used in form input groups, while a checkbox should be used in a form input group.</p>
+      </div>
+      <div class="preview-area" style="gap:32px;flex-wrap:wrap;align-items:flex-end;">
+
+        <!-- Single interactive toggle -->
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+          <div style="font-size:11px;color:var(--primitive-grey-300);">Click to toggle</div>
+          <button
+            class="eg-toggle-v2"
+            role="switch"
+            aria-checked="false"
+            aria-label="Toggle"
+            data-on="false"
+            onclick="toggleSwitch(this)">
+            <span class="eg-toggle-v2-label eg-toggle-v2-label--off">OFF</span>
+            <span class="eg-toggle-v2-knob"></span>
+            <span class="eg-toggle-v2-label eg-toggle-v2-label--on">ON</span>
+          </button>
+        </div>
+
+        <!-- Disabled Off -->
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+          <div style="font-size:11px;color:var(--primitive-grey-300);">Disabled · Off</div>
+          <button class="eg-toggle-v2 eg-toggle-v2--disabled" role="switch" aria-checked="false" aria-label="Toggle disabled" aria-disabled="true" disabled>
+            <span class="eg-toggle-v2-label eg-toggle-v2-label--off">OFF</span>
+            <span class="eg-toggle-v2-knob"></span>
+            <span class="eg-toggle-v2-label eg-toggle-v2-label--on">ON</span>
+          </button>
+        </div>
+
+        <!-- Disabled On -->
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+          <div style="font-size:11px;color:var(--primitive-grey-300);">Disabled · On</div>
+          <button class="eg-toggle-v2 eg-toggle-v2--on eg-toggle-v2--disabled" role="switch" aria-checked="true" aria-label="Toggle disabled" aria-disabled="true" disabled>
+            <span class="eg-toggle-v2-label eg-toggle-v2-label--off">OFF</span>
+            <span class="eg-toggle-v2-knob"></span>
+            <span class="eg-toggle-v2-label eg-toggle-v2-label--on">ON</span>
+          </button>
+        </div>
+
+      </div>
+
+      <style>
+        /* ── Toggle v2: CSS-driven, no DOM reordering needed ── */
+        .eg-toggle-v2 {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          width: 80px;
+          height: 40px;
+          border-radius: 32px;
+          border: 1px solid var(--color-toggle-border-off);
+          background: var(--color-toggle-bg-off);
+          padding: 4px;
+          cursor: pointer;
+          font-family: var(--font-lexend);
+          font-size: 14px;
+          font-weight: 700;
+          overflow: hidden;
+          transition: background 0.25s ease, border-color 0.25s ease;
+          outline: none;
+        }
+        .eg-toggle-v2:focus-visible {
+          outline: 2px solid var(--color-toggle-focus-off);
+          outline-offset: 2px;
+        }
+        .eg-toggle-v2--on {
+          background: var(--color-toggle-bg-on);
+          border-color: var(--color-toggle-border-on);
+        }
+        .eg-toggle-v2--disabled {
+          background: var(--color-toggle-bg-disabled);
+          border-color: var(--color-toggle-border-disabled);
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        /* Knob */
+        .eg-toggle-v2-knob {
+          position: absolute;
+          left: 4px;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: white;
+          box-shadow: 0 1px 4px rgba(0,0,0,.2);
+          transition: left 0.25s ease;
+          flex-shrink: 0;
+          z-index: 1;
+        }
+        .eg-toggle-v2--on .eg-toggle-v2-knob {
+          left: calc(100% - 36px);
+        }
+
+        /* Labels — each always present; opacity+pointer-events control visibility */
+        .eg-toggle-v2-label--off,
+        .eg-toggle-v2-label--on {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 24px;
+          color: var(--color-toggle-text-off);
+          transition: opacity 0.2s ease;
+        }
+        /* OFF label sits on the right side when off */
+        .eg-toggle-v2-label--off {
+          right: 4px;
+          opacity: 1;
+        }
+        /* ON label sits on the left side */
+        .eg-toggle-v2-label--on {
+          left: 4px;
+          opacity: 0;
+          color: var(--color-toggle-text-on);
+        }
+        /* When ON: show ON label, hide OFF label */
+        .eg-toggle-v2--on .eg-toggle-v2-label--off {
+          opacity: 0;
+        }
+        .eg-toggle-v2--on .eg-toggle-v2-label--on {
+          opacity: 1;
+        }
+        .eg-toggle-v2--disabled .eg-toggle-v2-label--off,
+        .eg-toggle-v2--disabled .eg-toggle-v2-label--on {
+          color: var(--color-toggle-text-disabled);
+        }
+      </style>
+
+      <script>
+        function toggleSwitch(btn) {
+          const isOn = btn.getAttribute('data-on') === 'true';
+          const nowOn = !isOn;
+          btn.setAttribute('data-on', nowOn.toString());
+          btn.setAttribute('aria-checked', nowOn.toString());
+          btn.classList.toggle('eg-toggle-v2--on', nowOn);
+        }
+      </script>
+    </div>
+
+    <!-- ── EXPANDABLE CARD ── -->
+    <h2 class="section" id="expandable-card">Expandable Card</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>expandable-card</h3>
+        <p>The expandable card is a component that can be interacted with to expand and show more information on the card. On the default collapsed view, the card should only display the title of the card.</p>
+      </div>
+      <div class="preview-area" style="flex-direction:column;align-items:flex-start;gap:16px;">
+        <div class="eg-expandable-card" data-open="false">
+          <div class="eg-expandable-card-header"
+            onclick="const c=this.closest('.eg-expandable-card');const open=c.getAttribute('data-open')==='true';c.setAttribute('data-open',(!open).toString());this.setAttribute('aria-expanded',(!open).toString());"
+            role="button" tabindex="0" aria-expanded="false">
+            <span class="eg-expandable-card-title">American Disability Act</span>
+            <svg class="eg-expandable-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="eg-expandable-card-body">
+            <p>The ADA lorem ipsum. Two sentence blurb that tells how this resource can be used.</p>
+            <div class="eg-card-heading">206-555-4646</div>
+            <a href="#" class="eg-card-link">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              http://www.ada.gov
+            </a>
+            <div class="eg-card-heading" style="font-size:16px;line-height:1.6;">Local Office<br>4509 Main St.<br>Seattle WA 98111</div>
+            <button class="eg-card-close">
+              <svg width="10" height="10" fill="white" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/></svg>
+              Close
+            </button>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--primitive-grey-300);">↑ Click to expand/collapse</p>
+      </div>
+    </div>
+
+    <!-- ── SAVED CARD ── -->
+    <h2 class="section" id="saved-card">Saved Card</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>saved-card</h3>
+        <p>Displays a saved route in the user's library. Available in Primary (white) and Secondary (blue) variants, with Default, Hover, and Focus states. Supports Named and Address sub-variants.</p>
+      </div>
+      <div class="component-label">Primary variant</div>
+      <div class="preview-area" style="flex-direction:column;align-items:flex-start;">
+        <div class="eg-saved-card" tabindex="0">
+          <div class="eg-saved-card-icon">★</div>
+          <div class="eg-saved-card-info">
+            <div class="eg-saved-card-name">Home</div>
+            <div class="eg-saved-card-address">1234 Pine St, Seattle WA 98101</div>
+          </div>
+          <svg width="20" height="20" fill="none" stroke="#005299" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="eg-saved-card" tabindex="0">
+          <div class="eg-saved-card-icon">📍</div>
+          <div class="eg-saved-card-info">
+            <div class="eg-saved-card-name">1234 Pine St, Seattle WA 98101</div>
+            <div class="eg-saved-card-address">Saved route</div>
+          </div>
+          <svg width="20" height="20" fill="none" stroke="#005299" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+      <div class="component-label">Secondary variant</div>
+      <div class="preview-area" style="flex-direction:column;align-items:flex-start;background:var(--primitive-grey-500);">
+        <div class="eg-saved-card secondary" tabindex="0">
+          <div class="eg-saved-card-icon">★</div>
+          <div class="eg-saved-card-info">
+            <div class="eg-saved-card-name">Home</div>
+            <div class="eg-saved-card-address">1234 Pine St, Seattle WA 98101</div>
+          </div>
+          <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TOOLTIP ── -->
+    <h2 class="section" id="tooltip">Tooltip</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>tooltip</h3>
+        <p>A tooltip displays information when a user clicks or focuses on different map-marker icons on the map. The message can be text (e.g., Accessible Crosswalk — Aloha St &amp; Warren Ave N) or icons (e.g., multiple map-markers).</p>
+      </div>
+      <div class="preview-area" style="align-items:flex-start;gap:20px;flex-wrap:wrap;">
+
+        <div class="eg-tooltip-wrap">
+          <div class="eg-tooltip-body" style="background:var(--color-tooltip-bg-primary);">
+            <div class="eg-tooltip-content" style="color:var(--color-tooltip-text-primary);">Tooltip text only</div>
+          </div>
+          <div class="eg-tooltip-tip" style="border-top:8px solid var(--color-tooltip-bg-primary);"></div>
+          <div style="font-size:10px;color:var(--primitive-grey-300);margin-top:4px;">Primary</div>
+        </div>
+
+        <!-- Secondary -->
+        <div class="eg-tooltip-wrap">
+          <div class="eg-tooltip-body" style="background:var(--color-tooltip-bg-secondary);">
+            <div class="eg-tooltip-content" style="color:var(--color-tooltip-text-secondary);">Tooltip text only</div>
+          </div>
+          <div class="eg-tooltip-tip" style="border-top:8px solid var(--color-tooltip-bg-secondary);"></div>
+          <div style="font-size:10px;color:var(--primitive-grey-300);margin-top:4px;">Secondary</div>
+        </div>
+
+        <!-- Tertiary -->
+        <div class="eg-tooltip-wrap">
+          <div class="eg-tooltip-body" style="background:var(--color-tooltip-bg-tertiary);">
+            <div class="eg-tooltip-content" style="color:var(--color-tooltip-text-tertiary);">Tooltip text only</div>
+          </div>
+          <div class="eg-tooltip-tip" style="border-top:8px solid var(--color-tooltip-bg-tertiary);"></div>
+          <div style="font-size:10px;color:var(--primitive-grey-300);margin-top:4px;">Tertiary</div>
+        </div>
+
+        <!-- Hazard -->
+        <div class="eg-tooltip-wrap">
+          <div class="eg-tooltip-body" style="background:var(--color-tooltip-bg-hazard);">
+            <div class="eg-tooltip-content" style="color:var(--color-tooltip-text-hazard);">Tooltip text only</div>
+          </div>
+          <div class="eg-tooltip-tip" style="border-top:8px solid var(--color-tooltip-bg-hazard);"></div>
+          <div style="font-size:10px;color:var(--primitive-grey-300);margin-top:4px;">Hazard</div>
+        </div>
+
+        <!-- Error -->
+        <div class="eg-tooltip-wrap">
+          <div class="eg-tooltip-body" style="background:var(--color-tooltip-bg-error);">
+            <div class="eg-tooltip-content" style="color:var(--color-tooltip-text-error);">Tooltip text only</div>
+          </div>
+          <div class="eg-tooltip-tip" style="border-top:8px solid var(--color-tooltip-bg-error);"></div>
+          <div style="font-size:10px;color:var(--primitive-grey-300);margin-top:4px;">Error</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TEXT INPUTS ── -->
+    <h2 class="section" id="inputs">Text Inputs</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>input/text &amp; input/text-area</h3>
+        <p>Text inputs collect user input. States: Primary, Hover (blue/100 border glow), Focus (blue/400 border + blue/100 ring), Disabled (grey/100 background). Text area provides multi-line entry with the same visual language.</p>
+      </div>
+      <div class="preview-area" style="flex-direction:column;align-items:flex-start;gap:12px;">
+        <div class="eg-input-wrap">
+          <label class="eg-input-label">Label</label>
+          <input class="eg-input" type="text" placeholder="Placeholder text" />
+        </div>
+        <div class="eg-input-wrap">
+          <label class="eg-input-label">Disabled</label>
+          <input class="eg-input" type="text" placeholder="Disabled input" disabled />
+        </div>
+        <div class="eg-input-wrap">
+          <label class="eg-input-label">Text Area</label>
+          <textarea class="eg-textarea" placeholder="Multi-line input..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SELECT ── -->
+    <h2 class="section" id="select">Select</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>select</h3>
+        <p>Dropdown selector for choosing from a predefined list. States: Closed/Open × Primary/Hover/Focus/Disabled. 48px height. Options inherit Lexend, 16px, base/black on white background.</p>
+      </div>
+      <div class="preview-area" style="flex-direction:column;align-items:flex-start;gap:24px;">
+
+        <!-- Custom styled select that forces Lexend on options via JS-powered listbox -->
+        <div style="display:flex;flex-direction:column;gap:6px;width:100%;max-width:367px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--primitive-grey-300);">Default</div>
+          <div class="eg-select-wrap" style="position:relative;width:100%;max-width:367px;">
+            <button
+              class="eg-select-btn"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              onclick="toggleCustomSelect(this)">
+              <span class="eg-select-btn-text">Select an option</span>
+              <svg width="16" height="16" fill="var(--primitive-blue-400)" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+            </button>
+            <ul class="eg-select-list" role="listbox" aria-label="Select an option" hidden>
+              <li class="eg-select-option" role="option" onclick="selectOption(this)" data-value="">Select an option</li>
+              <li class="eg-select-option" role="option" onclick="selectOption(this)" data-value="a">Option A</li>
+              <li class="eg-select-option" role="option" onclick="selectOption(this)" data-value="b">Option B</li>
+              <li class="eg-select-option" role="option" onclick="selectOption(this)" data-value="c">Option C</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Disabled -->
+        <div style="display:flex;flex-direction:column;gap:6px;width:100%;max-width:367px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--primitive-grey-300);">Disabled</div>
+          <button class="eg-select-btn eg-select-btn--disabled" disabled aria-disabled="true">
+            <span class="eg-select-btn-text">Disabled select</span>
+            <svg width="16" height="16" fill="var(--primitive-grey-300)" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+          </button>
+        </div>
+
+      </div>
+
+      <style>
+        .eg-select-btn {
+          width: 100%;
+          height: 48px;
+          padding: 0 var(--spacing-medium);
+          font-family: var(--font-lexend);
+          font-size: var(--type-body-primary);
+          font-weight: var(--weight-400);
+          color: var(--color-input-text-primary);
+          background: var(--color-input-bg-primary);
+          border: 1px solid var(--color-input-border-primary);
+          border-radius: var(--radius-medium);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+          outline: none;
+          transition: border-color 0.15s, box-shadow 0.15s;
+          text-align: left;
+        }
+        .eg-select-btn:hover {
+          border-color: var(--primitive-blue-400);
+        }
+        .eg-select-btn:focus-visible {
+          border-color: var(--primitive-blue-400);
+          box-shadow: 0 0 0 2px var(--primitive-blue-100);
+        }
+        .eg-select-btn[aria-expanded="true"] {
+          border-color: var(--primitive-blue-400);
+          box-shadow: 0 0 0 2px var(--primitive-blue-100);
+          border-radius: var(--radius-medium) var(--radius-medium) 0 0;
+        }
+        .eg-select-btn--disabled {
+          background: var(--color-input-bg-disabled);
+          color: var(--color-input-text-disabled);
+          border-color: var(--color-input-border-disabled);
+          cursor: not-allowed;
+        }
+        .eg-select-btn-text {
+          flex: 1;
+          font-family: var(--font-lexend);
+          font-size: var(--type-body-primary);
+          font-weight: var(--weight-400);
+        }
+        .eg-select-list {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--color-input-bg-primary);
+          border: 1px solid var(--primitive-blue-400);
+          border-top: none;
+          border-radius: 0 0 var(--radius-medium) var(--radius-medium);
+          list-style: none;
+          margin: 0;
+          padding: 4px 0;
+          z-index: 100;
+          box-shadow: 0 4px 12px rgba(0,0,0,.1);
+        }
+        .eg-select-option {
+          padding: 10px var(--spacing-medium);
+          font-family: var(--font-lexend);
+          font-size: var(--type-body-primary);
+          font-weight: var(--weight-400);
+          color: var(--color-input-text-primary);
+          cursor: pointer;
+          transition: background 0.1s;
+        }
+        .eg-select-option:hover,
+        .eg-select-option[aria-selected="true"] {
+          background: var(--primitive-blue-100);
+          color: var(--primitive-blue-400);
+        }
+        .eg-select-option:first-child {
+          color: var(--color-input-text-placeholder);
+        }
+      </style>
+
+      <script>
+        function toggleCustomSelect(btn) {
+          const list = btn.nextElementSibling;
+          const isOpen = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', (!isOpen).toString());
+          list.hidden = isOpen;
+        }
+        function selectOption(li) {
+          const list = li.closest('.eg-select-list');
+          const btn = list.previousElementSibling;
+          btn.querySelector('.eg-select-btn-text').textContent = li.textContent;
+          list.querySelectorAll('.eg-select-option').forEach(o => o.removeAttribute('aria-selected'));
+          li.setAttribute('aria-selected', 'true');
+          btn.setAttribute('aria-expanded', 'false');
+          list.hidden = true;
+        }
+        // Close on outside click
+        document.addEventListener('click', function(e) {
+          document.querySelectorAll('.eg-select-btn[aria-expanded="true"]').forEach(btn => {
+            if (!btn.closest('.eg-select-wrap').contains(e.target)) {
+              btn.setAttribute('aria-expanded', 'false');
+              btn.nextElementSibling.hidden = true;
+            }
+          });
+        });
+      </script>
+    </div>
+
+    <!-- ── CHECKBOX & RADIO ── -->
+    <h2 class="section" id="checkbox-radio">Checkbox &amp; Radio</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>input/checkbox &amp; input/radio</h3>
+        <p>Form selection controls for use within input groups. Checked/selected state uses <code>blue/400</code> accent. Disabled state fills the control with <code>input/background/disabled</code> (grey/100).</p>
+      </div>
+      <div class="preview-area" style="gap:32px;flex-wrap:wrap;">
+        <div>
+          <div class="component-label" style="margin:0 0 10px;">Checkbox</div>
+          <div class="eg-check-group">
+            <label class="eg-check-row"><input type="checkbox" /> Unchecked</label>
+            <label class="eg-check-row"><input type="checkbox" checked /> Checked</label>
+            <label class="eg-check-row"><input type="checkbox" disabled /> Disabled</label>
+          </div>
+        </div>
+        <div>
+          <div class="component-label" style="margin:0 0 10px;">Radio</div>
+          <div class="eg-check-group">
+            <label class="eg-check-row"><input type="radio" name="r1" /> Unselected</label>
+            <label class="eg-check-row"><input type="radio" name="r1" checked /> Selected</label>
+            <label class="eg-check-row"><input type="radio" name="r1" disabled /> Disabled</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DIVIDER ── -->
+    <h2 class="section" id="divider">Divider</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>divider</h3>
+        <p>Dividers are used to separate content on a screen. Available in Horizontal and Vertical orientations, and three semantic colours: primary (blue/400), secondary (base/black), tertiary (base/white — for use on dark backgrounds).</p>
+      </div>
+      <div class="preview-area" style="flex-direction:column;gap:16px;">
+        <div style="width:100%;">
+          <p style="font-size:12px;color:var(--primitive-grey-300);margin-bottom:8px;">Horizontal · Primary (blue/400)</p>
+          <hr class="eg-divider-h" style="background:var(--color-divider-primary);" />
+        </div>
+        <div style="width:100%;">
+          <p style="font-size:12px;color:var(--primitive-grey-300);margin-bottom:8px;">Horizontal · Secondary (base/black)</p>
+          <hr class="eg-divider-h" style="background:var(--color-divider-secondary);" />
+        </div>
+        <div style="background:var(--primitive-blue-400);padding:12px;border-radius:8px;">
+          <p style="font-size:12px;color:var(--primitive-blue-100);margin-bottom:8px;">Horizontal · Tertiary (base/white — dark bg)</p>
+          <hr class="eg-divider-h" style="background:var(--color-divider-tertiary);" />
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;height:48px;">
+          <span style="font-size:13px;">Content</span>
+          <div class="eg-divider-v" style="background:var(--color-divider-primary);"></div>
+          <span style="font-size:13px;">Content</span>
+          <span style="font-size:12px;color:var(--primitive-grey-300);">← Vertical</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGINATION ── -->
+    <h2 class="section" id="pagination">Pagination</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>pagination</h3>
+        <p>Navigation control for paginated content. Includes prev/next arrow controls and numbered page buttons. Current page uses primary blue fill. Disabled state applies to arrows at the first or last page.</p>
+      </div>
+      <div class="preview-area">
+        <div class="eg-pagination">
+          <button class="eg-page-btn" disabled aria-label="Previous page">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+          </button>
+          <button class="eg-page-btn" aria-label="Page 1">1</button>
+          <button class="eg-page-btn current" aria-current="page" aria-label="Page 2, current">2</button>
+          <button class="eg-page-btn" aria-label="Page 3">3</button>
+          <button class="eg-page-btn" aria-label="Next page">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ PATTERNS ════════ -->
+
+    <!-- ── NAVIGATION ── -->
+    <h2 class="section" id="navigation">Navigation</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>nav</h3>
+        <p>The primary navigation menu. Five main app sections — each as a large, touch-friendly nav item with a 64px circular icon and a 24px bold label. Designed for maximum legibility and minimal cognitive overhead.</p>
+      </div>
+      <div class="preview-area" style="background:#f8f8f6;">
+        <nav class="eg-nav" aria-label="Main navigation">
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">⊕</div><span class="eg-nav-label">New Route</span></a>
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">★</div><span class="eg-nav-label">My Saved Routes</span></a>
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">?</div><span class="eg-nav-label">Agency Resources</span></a>
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">ℹ</div><span class="eg-nav-label">Accessibility Info</span></a>
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">⚙</div><span class="eg-nav-label">Settings</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- ── HEADER ── -->
+    <h2 class="section" id="header">Header</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>header</h3>
+        <p>Two header variants. <strong>Main</strong> — full-bleed navy header containing the full EasyGo logo, used on primary screens. <strong>Secondary</strong> — compact back-navigation bar with the alt-small logo flush right, used on sub-screens. Both use <code>map-header/background/primary</code> (blue/400).</p>
+      </div>
+
+      <div class="component-label">Main Header</div>
+      <div class="preview-area" style="background:#e8e8e6;flex-direction:column;align-items:flex-start;padding:0;overflow:hidden;border-radius:8px;">
+        <div class="eg-header-main" style="align-items:center;">
+          <img
+            src="https://www.figma.com/api/mcp/asset/1c211ee1-53df-4531-b211-aca18eb37581"
+            alt="EasyGo logo"
+            class="eg-header-main-logo" />
+        </div>
+      </div>
+
+      <div class="component-label" style="margin-top:1.25rem;">Secondary Header</div>
+      <div class="preview-area" style="background:#e8e8e6;flex-direction:column;align-items:flex-start;padding:12px;overflow:hidden;border-radius:8px;">
+        <div class="eg-header-secondary" style="background:none;padding:8px 0;">
+          <a href="#" class="eg-header-back" style="color:var(--primitive-blue-400);" aria-label="Go back">
+            <svg width="16" height="16" fill="var(--primitive-blue-400)" viewBox="0 0 16 16"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+            Back
+          </a>
+          <div style="flex:1;"></div>
+          <img
+            src="https://www.figma.com/api/mcp/asset/5bcab966-a785-401e-a25b-c31e3eb91dd7"
+            alt="EasyGo"
+            class="eg-header-secondary-logo" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MAP MARKERS ── -->
+    <h2 class="section" id="map-markers">Map Markers</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>map-markers</h3>
+        <p>Icon markers placed on the map to communicate route and accessibility information. All markers are 32px × 32px unless noted.</p>
+      </div>
+      <div class="preview-area" style="gap:24px;flex-wrap:wrap;">
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-route-end">●</div><span>Route End</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-hazard-stop">STOP</div><span>Hazard Stop</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-hazard-warn">⚠</div><span>Hazard Warning</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-location"></div><span>My Location</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-traffic">🚦</div><span>Traffic Signal</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-crosswalk">♿</div><span>Crosswalk</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-multiple">3+</div><span>Multiple</span></div>
+      </div>
+    </div>
+
+    <!-- ── LOGO ── -->
+    <h2 class="section" id="logo">Logo</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>logo</h3>
+        <p>The full size logo is 800px × 264px and should keep that ratio on resize. The alt-small size logo is 264px × 264px and should keep the square ratio on resize.</p>
+      </div>
+      <div class="preview-area" style="gap:32px;align-items:center;flex-wrap:wrap;background:#e8e8e6;">
+        <div>
+          <div class="component-label" style="margin:0 0 8px;">Full (800×264)</div>
+          <img
+            src="https://www.figma.com/api/mcp/asset/1c211ee1-53df-4531-b211-aca18eb37581"
+            alt="EasyGo full logo"
+            class="eg-logo-full" />
+        </div>
+        <div>
+          <div class="component-label" style="margin:0 0 8px;">Alt / Small (264×264)</div>
+          <img
+            src="https://www.figma.com/api/mcp/asset/5bcab966-a785-401e-a25b-c31e3eb91dd7"
+            alt="EasyGo alt logo"
+            class="eg-logo-alt" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SETTINGS SECTION ── -->
+    <h2 class="section" id="settings-section">Settings Section</h2>
+    <div class="component-block">
+      <div class="component-block-header">
+        <h3>setting-section</h3>
+        <p>Two types: <strong>Toggle</strong> — label + sub-label + Toggle on the right (72px h); <strong>New Page</strong> — label + chevron-right navigates to a detail screen (64px h). Both use white background, grey/100 border, 16px radius.</p>
+      </div>
+      <div class="preview-area" style="flex-direction:column;align-items:flex-start;gap:12px;">
+        <div class="eg-setting-toggle-row">
+          <div class="eg-setting-info">
+            <div class="eg-setting-title">Accessible Crosswalks</div>
+            <div class="eg-setting-sub">Prefer routes with audible beaconing</div>
+          </div>
+          <button
+            class="eg-toggle-v2 eg-toggle-v2--on"
+            role="switch"
+            aria-checked="true"
+            aria-label="Toggle accessible crosswalks"
+            data-on="true"
+            onclick="toggleSwitch(this)"
+            style="flex-shrink:0;">
+            <span class="eg-toggle-v2-label eg-toggle-v2-label--off">OFF</span>
+            <span class="eg-toggle-v2-knob"></span>
+            <span class="eg-toggle-v2-label eg-toggle-v2-label--on">ON</span>
+          </button>
+        </div>
+        <div class="eg-setting-toggle-row" style="cursor:pointer;" tabindex="0" role="button" aria-label="Navigate to About EasyGo">
+          <div class="eg-setting-info">
+            <div class="eg-setting-title">About EasyGo</div>
+          </div>
+          <svg width="20" height="20" fill="none" stroke="#005299" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      EasyGo Design System · Figma: EasyGo Redesign 2026 · Generated June 2026
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // Sidebar active link tracking via IntersectionObserver
+  const links = document.querySelectorAll('.sidebar a');
+  const sections = document.querySelectorAll('h2.section[id]');
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
