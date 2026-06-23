@@ -22,14 +22,14 @@ function Header({ variant = 'main', title, onBack, children }) {
           Back
         </a>
         {title && <span className="eg-header-back-title" style={{ color: 'var(--primitive-blue-400)' }}>{title}</span>}
-        <img src="/alt-logo.png" alt="EasyGo" className="eg-header-secondary-logo" />
+        <img src={`${import.meta.env.BASE_URL}alt-logo.png`} alt="EasyGo" className="eg-header-secondary-logo" />
       </div>
     )
   }
 
   return (
     <div className="eg-header-main">
-      <img src="/logo-800-vector.png" alt="EasyGo logo" className="eg-header-main-logo" />
+      <img src={`${import.meta.env.BASE_URL}logo-800-vector.png`} alt="EasyGo logo" className="eg-header-main-logo" />
       {children}
     </div>
   )

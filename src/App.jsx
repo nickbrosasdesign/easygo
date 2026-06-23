@@ -11,7 +11,7 @@ import A11yInfo from './screens/A11yInfo'
 function App() {
   return (
     <AppStateProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new-route" element={<NewRoute />} />

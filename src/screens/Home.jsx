@@ -10,7 +10,7 @@ function Home() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'url(/map-image-for-prototype.png.png)',
+          backgroundImage: `url(${import.meta.env.BASE_URL}map-image-for-prototype.png.png)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
