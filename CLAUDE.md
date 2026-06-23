@@ -4,17 +4,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-EasyGo is an accessibility-focused routing app concept for getting around Seattle (people with mobility and cognitive disabilities). This repository is currently a **static prototype + research/design archive**, not an application codebase: there is no `package.json`, no build tool, and no test suite. Content is plain HTML/CSS and Markdown viewed directly in a browser or editor.
-
-A `node_modules/` and empty `src/` directory exist from an abandoned `npx storybook init` attempt (see `debug-storybook.log`) — it failed because there's no `package.json`, and no Storybook setup actually exists. Don't assume npm/yarn scripts work here unless you've checked.
+EasyGo is an accessibility-focused routing app concept for getting around Seattle (people with mobility and cognitive disabilities). The actual application is a **React + Vite** scaffold at the repo root (plain JS, not TS). Alongside it, the repo carries a static prototype + research/design archive: standalone HTML mockups and Markdown research docs viewed directly in a browser or editor, not part of the app build.
 
 ## Working with this repo
 
-There is no build/lint/test command. To view the prototype pages, open the HTML files directly in a browser (no dev server required):
+Standard Vite/npm commands, run from the repo root:
+- `npm install` — install dependencies
+- `npm run dev` — start the Vite dev server with HMR
+- `npm run build` — production build to `dist/`
+- `npm run lint` — ESLint (flat config in `eslint.config.js`)
+- `npm run preview` — preview the production build
+
+There is no test suite configured yet.
+
+The app entry point is `index.html` → `src/main.jsx` → `src/App.jsx`. `src/main.jsx` imports `../core.css` directly (the same root-level stylesheet used by the static prototype pages, see below), so the app and the prototype share one design-token source rather than duplicating styles into `src/`.
+
+### Static prototype pages (separate from the app)
+
+These are standalone HTML files, not wired into the Vite build — open them directly in a browser:
 - `easygo-pm-deliverables.html` — PM deliverables doc (business requirements, goals, timeline, MVP/future features, roadmap, journey map, research synthesis, routing logic).
 - `easygo-design-system.html` — V1 design system reference (colors, typography, layout, components, patterns), rendered from `core.css`.
 
-Both pages load Lexend from Google Fonts via `<link>` tags and pull all visual styling from `core.css` at the repo root.
+Both pages load Lexend from Google Fonts via `<link>` tags and pull all visual styling from `core.css` at the repo root. `index.html` (the Vite entry) loads the same Lexend `<link>` tags for consistency.
 
 ## Design tokens: three copies, keep in sync
 
@@ -27,7 +38,7 @@ If you update a token (e.g. a color hex value or spacing scale), update it in al
 
 ## Image assets live in `public/`
 
-The old `images/` directory was removed from git; logo/map assets now live under `public/` (see `public/README.md` for what each image variant is for: main logo vs. alt/collapsed logo vs. prototype-only map image). Both HTML pages reference `public/logo-800-vector.png` — if you add new image references, point them at `public/`, not `images/`.
+The old `images/` directory was removed from git; logo/map assets now live under `public/` (see `public/README.md` for what each image variant is for: main logo vs. alt/collapsed logo vs. prototype-only map image). The static HTML pages reference these as `public/logo-800-vector.png`; inside the Vite app (`src/`), reference the same files as root-relative paths (e.g. `/logo-800-vector.png`) per Vite's `public/` convention — don't add a `/public` prefix there.
 
 ## `docs/` contents
 
