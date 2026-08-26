@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlus, faStar, faCircleQuestion, faCircleInfo, faGear } from '@fortawesome/free-solid-svg-icons'
+import { faLocationCrosshairs, faStar, faCircleQuestion, faCircleInfo, faGear } from '@fortawesome/free-solid-svg-icons'
 
 const NAV_ITEMS = [
-  { to: '/new-route', icon: faCirclePlus, label: 'New Route' },
+  { to: '/new-route', icon: faLocationCrosshairs, label: 'New Route' },
   { to: '/saved-routes', icon: faStar, label: 'My Saved Routes' },
   { to: '/agency', icon: faCircleQuestion, label: 'Agency Resources' },
   { to: '/a11y-info', icon: faCircleInfo, label: 'Accessibility Info' },
