@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationDot, faMapPin } from '@fortawesome/free-solid-svg-icons'
 import Header from '../components/Header'
 import CheckRow from '../components/CheckRow'
 import Nav from '../components/Nav'
@@ -67,10 +69,10 @@ function AddressField({ icon, placeholder, value, onChange }) {
         <li
           className="eg-select-option"
           role="option"
-          style={{ color: 'var(--primitive-blue-400)', fontWeight: 600 }}
+          style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--primitive-blue-400)', fontWeight: 600 }}
           onClick={() => setDropPin(true)}
         >
-          📍 Choose location on map
+          <FontAwesomeIcon icon={faLocationDot} /> Choose location on map
         </li>
       </ul>
       {dropPin && (
@@ -103,10 +105,11 @@ function AddressField({ icon, placeholder, value, onChange }) {
                 left: '50%',
                 transform: 'translate(-50%, -100%)',
                 fontSize: 32,
+                color: 'var(--primitive-blue-400)',
               }}
               aria-hidden="true"
             >
-              📍
+              <FontAwesomeIcon icon={faLocationDot} />
             </div>
           </div>
           <button
@@ -166,13 +169,13 @@ function NewRoute() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-medium)' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-small)' }}>
           <AddressField
-            icon={<span aria-hidden="true">📍</span>}
+            icon={<FontAwesomeIcon icon={faLocationDot} aria-hidden="true" />}
             placeholder="Choose current location"
             value={origin}
             onChange={setOrigin}
           />
           <AddressField
-            icon={<span aria-hidden="true">📌</span>}
+            icon={<FontAwesomeIcon icon={faMapPin} aria-hidden="true" />}
             placeholder="Choose destination"
             value={destination}
             onChange={setDestination}

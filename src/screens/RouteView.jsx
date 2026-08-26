@@ -1,5 +1,14 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faLocationDot,
+  faMapPin,
+  faXmark,
+  faStar,
+  faTriangleExclamation,
+  faEye,
+} from '@fortawesome/free-solid-svg-icons'
 import MapMarker from '../components/MapMarker'
 import MapFooter from '../components/MapFooter'
 import CheckRow from '../components/CheckRow'
@@ -82,8 +91,12 @@ function RouteDialog({ route, onBack, onShowDetails, onStart, onEnd }) {
         <>
           <div style={{ height: 1, background: 'white' }} />
           <div style={{ color: 'white', display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <div style={{ display: 'flex', gap: 8, paddingLeft: 32 }}>📍 {route.origin}</div>
-            <div style={{ display: 'flex', gap: 8, paddingLeft: 32 }}>📌 {route.destination}</div>
+            <div style={{ display: 'flex', gap: 8, paddingLeft: 32 }}>
+              <FontAwesomeIcon icon={faLocationDot} /> {route.origin}
+            </div>
+            <div style={{ display: 'flex', gap: 8, paddingLeft: 32 }}>
+              <FontAwesomeIcon icon={faMapPin} /> {route.destination}
+            </div>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button
@@ -227,7 +240,7 @@ function OverlayLayersPanel({ layers, onToggle, onClose }) {
           onClick={onClose}
           style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}
         >
-          ✕
+          <FontAwesomeIcon icon={faXmark} />
         </button>
       </div>
       {ROWS.map(([key, label]) => (
@@ -384,7 +397,9 @@ function SaveRouteModal({ route, onCancel, onSave }) {
             textAlign: 'center',
           }}
         >
-          <h2 style={{ margin: 0, fontSize: 20 }}>★ Route saved!</h2>
+          <h2 style={{ margin: 0, fontSize: 20 }}>
+            <FontAwesomeIcon icon={faStar} /> Route saved!
+          </h2>
           <p style={{ margin: 0 }}>“{name || route.destination}” was added to My Saved Routes.</p>
           <button type="button" className="eg-btn eg-btn-primary eg-btn-primary-size" onClick={onCancel}>
             Done
@@ -548,7 +563,7 @@ function RouteView() {
             boxShadow: '0 0 2px rgba(0,0,0,.5)',
           }}
         >
-          ★
+          <FontAwesomeIcon icon={faStar} />
         </button>
       )}
 
@@ -561,7 +576,7 @@ function RouteView() {
               style={{ flex: 1, background: 'var(--primitive-yellow-300)', borderColor: 'white', color: '#3b3a3a' }}
               onClick={() => setShowMarkHazard(true)}
             >
-              ⚠ Mark Hazard
+              <FontAwesomeIcon icon={faTriangleExclamation} /> Mark Hazard
             </button>
           )}
           <Link
@@ -573,7 +588,7 @@ function RouteView() {
             className="eg-btn eg-btn-primary eg-btn-primary-size"
             style={{ flex: 1, textDecoration: 'none' }}
           >
-            👁 View Overlays
+            <FontAwesomeIcon icon={faEye} /> View Overlays
           </Link>
         </MapFooter>
       )}
@@ -606,7 +621,7 @@ function RouteView() {
           onSave={(name) => {
             actions.addSavedRoute({
               type: name ? 'named' : 'address',
-              icon: name ? '★' : '📍',
+              icon: name ? 'star' : 'pin',
               name: name || route.destination,
               address: name ? route.destination : 'Saved route',
             })

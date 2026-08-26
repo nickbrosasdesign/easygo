@@ -1,4 +1,9 @@
-function SavedCard({ variant = 'primary', icon = '★', name, address, onClick }) {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+
+const ICON_BY_KEY = { star: faStar, pin: faLocationDot }
+
+function SavedCard({ variant = 'primary', icon = 'star', name, address, onClick }) {
   return (
     <div
       className={['eg-saved-card', variant === 'secondary' ? 'secondary' : '']
@@ -14,7 +19,9 @@ function SavedCard({ variant = 'primary', icon = '★', name, address, onClick }
         }
       }}
     >
-      <div className="eg-saved-card-icon">{icon}</div>
+      <div className="eg-saved-card-icon">
+        <FontAwesomeIcon icon={ICON_BY_KEY[icon] || faStar} />
+      </div>
       <div className="eg-saved-card-info">
         <div className="eg-saved-card-name">{name}</div>
         <div className="eg-saved-card-address">{address}</div>

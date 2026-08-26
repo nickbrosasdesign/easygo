@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 import Header from '../components/Header'
 import { useAppState } from '../state/AppStateContext'
 
@@ -47,7 +49,7 @@ function Settings() {
             style={{ alignSelf: 'flex-start' }}
             onClick={() => actions.connectAccount('nbrosas@gmail.com')}
           >
-            👤 Create Account
+            <FontAwesomeIcon icon={faUser} /> Create Account
           </button>
           <p style={{ textAlign: 'center', fontSize: 14 }}>Create account to link saved routes across devices</p>
         </>

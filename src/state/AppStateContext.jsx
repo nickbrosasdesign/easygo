@@ -4,13 +4,13 @@ const STORAGE_KEY = 'easygo-state-v1'
 
 const defaultState = {
   savedRoutes: [
-    { id: 's1', type: 'named', icon: '★', name: 'Home', address: '1234 Pine St, Seattle WA 98101' },
-    { id: 's2', type: 'named', icon: '★', name: 'Work', address: '500 5th Ave, Seattle WA 98104' },
-    { id: 's3', type: 'address', icon: '📍', name: '1112 Pike St, Seattle WA 98122', address: 'Saved route' },
-    { id: 's4', type: 'named', icon: '★', name: "Mom's House", address: '88 NW 60th St, Seattle WA 98107' },
-    { id: 's5', type: 'address', icon: '📍', name: '901 5th Ave, Seattle WA 98164', address: 'Saved route' },
-    { id: 's6', type: 'named', icon: '★', name: 'Gym', address: '2200 6th Ave, Seattle WA 98121' },
-    { id: 's7', type: 'address', icon: '📍', name: '4300 University Way NE, Seattle WA 98105', address: 'Saved route' },
+    { id: 's1', type: 'named', icon: 'star', name: 'Home', address: '1234 Pine St, Seattle WA 98101' },
+    { id: 's2', type: 'named', icon: 'star', name: 'Work', address: '500 5th Ave, Seattle WA 98104' },
+    { id: 's3', type: 'address', icon: 'pin', name: '1112 Pike St, Seattle WA 98122', address: 'Saved route' },
+    { id: 's4', type: 'named', icon: 'star', name: "Mom's House", address: '88 NW 60th St, Seattle WA 98107' },
+    { id: 's5', type: 'address', icon: 'pin', name: '901 5th Ave, Seattle WA 98164', address: 'Saved route' },
+    { id: 's6', type: 'named', icon: 'star', name: 'Gym', address: '2200 6th Ave, Seattle WA 98121' },
+    { id: 's7', type: 'address', icon: 'pin', name: '4300 University Way NE, Seattle WA 98105', address: 'Saved route' },
   ],
   settings: {
     accountConnected: false,

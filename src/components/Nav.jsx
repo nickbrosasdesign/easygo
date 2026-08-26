@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCirclePlus, faStar, faCircleQuestion, faCircleInfo, faGear } from '@fortawesome/free-solid-svg-icons'
 
 const NAV_ITEMS = [
-  { to: '/new-route', icon: '⊕', label: 'New Route' },
-  { to: '/saved-routes', icon: '★', label: 'My Saved Routes' },
-  { to: '/agency', icon: '?', label: 'Agency Resources' },
-  { to: '/a11y-info', icon: 'ℹ', label: 'Accessibility Info' },
-  { to: '/settings', icon: '⚙', label: 'Settings' },
+  { to: '/new-route', icon: faCirclePlus, label: 'New Route' },
+  { to: '/saved-routes', icon: faStar, label: 'My Saved Routes' },
+  { to: '/agency', icon: faCircleQuestion, label: 'Agency Resources' },
+  { to: '/a11y-info', icon: faCircleInfo, label: 'Accessibility Info' },
+  { to: '/settings', icon: faGear, label: 'Settings' },
 ]
 
 function Nav({ excludeNewRoute = false }) {
@@ -16,7 +18,7 @@ function Nav({ excludeNewRoute = false }) {
       {items.map((item) => (
         <Link key={item.to} className="eg-nav-item" to={item.to}>
           <div className="eg-nav-icon" aria-hidden="true">
-            {item.icon}
+            <FontAwesomeIcon icon={item.icon} />
           </div>
           <span className="eg-nav-label">{item.label}</span>
         </Link>

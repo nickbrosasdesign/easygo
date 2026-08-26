@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lexend+Mega:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="core.css" />
+  <script src="https://kit.fontawesome.com/aacb11643e.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="shell">
@@ -521,7 +522,7 @@
       <div class="component-label">Primary variant</div>
       <div class="preview-area" style="flex-direction:column;align-items:flex-start;">
         <div class="eg-saved-card" tabindex="0">
-          <div class="eg-saved-card-icon">★</div>
+          <div class="eg-saved-card-icon"><i class="fa-solid fa-star"></i></div>
           <div class="eg-saved-card-info">
             <div class="eg-saved-card-name">Home</div>
             <div class="eg-saved-card-address">1234 Pine St, Seattle WA 98101</div>
@@ -529,7 +530,7 @@
           <svg width="20" height="20" fill="none" stroke="#005299" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
         </div>
         <div class="eg-saved-card" tabindex="0">
-          <div class="eg-saved-card-icon">📍</div>
+          <div class="eg-saved-card-icon"><i class="fa-solid fa-location-dot"></i></div>
           <div class="eg-saved-card-info">
             <div class="eg-saved-card-name">1234 Pine St, Seattle WA 98101</div>
             <div class="eg-saved-card-address">Saved route</div>
@@ -540,7 +541,7 @@
       <div class="component-label">Secondary variant</div>
       <div class="preview-area" style="flex-direction:column;align-items:flex-start;background:var(--primitive-grey-500);">
         <div class="eg-saved-card secondary" tabindex="0">
-          <div class="eg-saved-card-icon">★</div>
+          <div class="eg-saved-card-icon"><i class="fa-solid fa-star"></i></div>
           <div class="eg-saved-card-info">
             <div class="eg-saved-card-name">Home</div>
             <div class="eg-saved-card-address">1234 Pine St, Seattle WA 98101</div>
@@ -865,11 +866,11 @@
       </div>
       <div class="preview-area" style="background:#f8f8f6;">
         <nav class="eg-nav" aria-label="Main navigation">
-          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">⊕</div><span class="eg-nav-label">New Route</span></a>
-          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">★</div><span class="eg-nav-label">My Saved Routes</span></a>
-          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">?</div><span class="eg-nav-label">Agency Resources</span></a>
-          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">ℹ</div><span class="eg-nav-label">Accessibility Info</span></a>
-          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true">⚙</div><span class="eg-nav-label">Settings</span></a>
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true"><i class="fa-solid fa-circle-plus"></i></div><span class="eg-nav-label">New Route</span></a>
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true"><i class="fa-solid fa-star"></i></div><span class="eg-nav-label">My Saved Routes</span></a>
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true"><i class="fa-solid fa-circle-question"></i></div><span class="eg-nav-label">Agency Resources</span></a>
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></div><span class="eg-nav-label">Accessibility Info</span></a>
+          <a class="eg-nav-item" href="#"><div class="eg-nav-icon" aria-hidden="true"><i class="fa-solid fa-gear"></i></div><span class="eg-nav-label">Settings</span></a>
         </nav>
       </div>
     </div>
@@ -916,12 +917,12 @@
         <p>Icon markers placed on the map to communicate route and accessibility information. All markers are 32px × 32px unless noted.</p>
       </div>
       <div class="preview-area" style="gap:24px;flex-wrap:wrap;">
-        <div class="eg-marker"><div class="eg-marker-pin eg-marker-route-end">●</div><span>Route End</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-route-end"><i class="fa-solid fa-circle"></i></div><span>Route End</span></div>
         <div class="eg-marker"><div class="eg-marker-pin eg-marker-hazard-stop">STOP</div><span>Hazard Stop</span></div>
-        <div class="eg-marker"><div class="eg-marker-pin eg-marker-hazard-warn">⚠</div><span>Hazard Warning</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-hazard-warn"><i class="fa-solid fa-triangle-exclamation"></i></div><span>Hazard Warning</span></div>
         <div class="eg-marker"><div class="eg-marker-pin eg-marker-location"></div><span>My Location</span></div>
-        <div class="eg-marker"><div class="eg-marker-pin eg-marker-traffic">🚦</div><span>Traffic Signal</span></div>
-        <div class="eg-marker"><div class="eg-marker-pin eg-marker-crosswalk">♿</div><span>Crosswalk</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-traffic"><i class="fa-solid fa-traffic-light"></i></div><span>Traffic Signal</span></div>
+        <div class="eg-marker"><div class="eg-marker-pin eg-marker-crosswalk"><i class="fa-solid fa-wheelchair"></i></div><span>Crosswalk</span></div>
         <div class="eg-marker"><div class="eg-marker-pin eg-marker-multiple">3+</div><span>Multiple</span></div>
       </div>
     </div>
