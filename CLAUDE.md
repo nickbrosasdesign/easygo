@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-EasyGo is an accessibility-focused routing app concept for getting around Seattle (people with mobility and cognitive disabilities). The application is a **React + Vite** working prototype at the repo root (plain JS, not TS), implementing every screen from the Figma source: Home/nav, New Route, Route/Map view (with hazard marking and overlay layers), Saved Routes, Settings, Agency Resources, and Accessibility Info. State (saved routes, settings, hazards, current route) lives in `src/state/AppStateContext.jsx` and persists to `localStorage`. Alongside the app, the repo carries a static prototype + research/design archive: standalone HTML mockups and Markdown research docs viewed directly in a browser or editor, not part of the app build.
+EasyGo is an accessibility-focused routing app concept for getting around Seattle (people with mobility and cognitive disabilities). The application is a **React + Vite** working prototype at the repo root (plain JS, not TS), implementing every screen from the Figma source: Home/nav, New Route, Route/Map view (with hazard marking and overlay layers), Saved Routes, Settings, Agency Resources, and Accessibility Info. State (saved routes, settings, hazards, current route) lives in `src/state/AppStateContext.jsx` and persists to `localStorage`. `index.html` at the repo root is a splash page linking to the app (`main.html`) and to the static docs below — it is not the app entry point. Alongside the app, the repo carries a static prototype + research/design archive: standalone HTML mockups and Markdown research docs viewed directly in a browser or editor, not part of the app build.
 
 ## Architecture
 
@@ -25,28 +25,28 @@ Standard Vite/npm commands, run from the repo root:
 
 There is no test suite configured yet.
 
-The app entry point is `index.html` → `src/main.jsx` → `src/App.jsx`. `src/main.jsx` imports `../core.css` directly (the same root-level stylesheet used by the static prototype pages, see below), so the app and the prototype share one design-token source rather than duplicating styles into `src/`.
+`index.html` at the repo root is a static splash page (not part of the React app) linking out to the app and the two static prototype pages below. The actual app entry point is `main.html` → `src/main.jsx` → `src/App.jsx`; both `index.html` and `main.html` are declared as build inputs in `vite.config.js` (`build.rollupOptions.input`) so `npm run build` emits both. `core.css` lives in `public/core.css` — since Vite never processes JS imports of files under `public/`, every HTML entry (`index.html`, `main.html`, and the two static pages) loads it via its own `<link rel="stylesheet" href="/core.css">` (or a relative `core.css` for the pages that live alongside it in `public/`) rather than `src/main.jsx` importing it.
 
 ### Static prototype pages (separate from the app)
 
-These are standalone HTML files, not wired into the Vite build — open them directly in a browser:
-- `easygo-pm-deliverables.html` — PM deliverables doc (business requirements, goals, timeline, MVP/future features, roadmap, journey map, research synthesis, routing logic).
-- `easygo-design-system.html` — V1 design system reference (colors, typography, layout, components, patterns), rendered from `core.css`.
+These are standalone HTML files under `public/`, not wired into the Vite build's HTML transform (they're copied to `dist/` as-is) — open them directly in a browser, or via the splash page's links:
+- `public/easygo-pm-deliverables.html` — PM deliverables doc (business requirements, goals, timeline, MVP/future features, roadmap, journey map, research synthesis, routing logic).
+- `public/easygo-design-system.html` — V1 design system reference (colors, typography, layout, components, patterns), rendered from `core.css`.
 
-Both pages load Lexend from Google Fonts via `<link>` tags and pull all visual styling from `core.css` at the repo root. `index.html` (the Vite entry) loads the same Lexend `<link>` tags for consistency.
+Both pages load Lexend from Google Fonts via `<link>` tags and pull all visual styling from `public/core.css` (referenced relatively as `core.css` since they're siblings). `index.html` and `main.html` load the same Lexend `<link>` tags for consistency.
 
 ## Design tokens: three copies, keep in sync
 
 The design token values (colors, typography, spacing, radii, component specs) currently exist in **three places** that must be kept consistent when changing the visual design:
-1. `core.css` — root stylesheet, consumed by both HTML prototype pages via CSS custom properties (`--primitive-*`, etc.).
-2. `docs/tokens.css` — currently byte-identical to `core.css`.
+1. `public/core.css` — stylesheet, consumed by both HTML prototype pages via CSS custom properties (`--primitive-*`, etc.).
+2. `docs/tokens.css` — currently byte-identical to `public/core.css`.
 3. `docs/design-system.md` — YAML frontmatter at the top of the file encodes the same tokens (colors, typography, spacing, components) in a structured format, followed by prose documentation of usage/rationale.
 
 If you update a token (e.g. a color hex value or spacing scale), update it in all three locations, not just one.
 
 ## Image assets live in `public/`
 
-The old `images/` directory was removed from git; logo/map assets now live under `public/` (see `public/README.md` for what each image variant is for: main logo vs. alt/collapsed logo vs. prototype-only map image). The static HTML pages reference these as `public/logo-800-vector.png`; inside the Vite app (`src/`), reference the same files as root-relative paths (e.g. `/logo-800-vector.png`) per Vite's `public/` convention — don't add a `/public` prefix there.
+The old `images/` directory was removed from git; logo/map assets now live under `public/` alongside `core.css` and the two static prototype pages (see `public/README.md` for what each image variant is for: main logo vs. alt/collapsed logo vs. prototype-only map image). The static HTML pages reference these relatively as `logo-800-vector.png` (they're siblings within `public/`); inside the Vite app (`src/`) and the root-level `index.html`/`main.html`, reference the same files as root-relative paths (e.g. `/logo-800-vector.png`) per Vite's `public/` convention — don't add a `/public` prefix there.
 
 ## `docs/` contents
 
