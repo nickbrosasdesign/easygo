@@ -13,6 +13,7 @@ import {
 import Header from '../components/Header'
 import MapMarker from '../components/MapMarker'
 import MapFooter from '../components/MapFooter'
+import RoutePath from '../components/RoutePath'
 import CheckRow from '../components/CheckRow'
 import { useAppState } from '../state/AppStateContext'
 import { useIsDesktop } from '../hooks/useIsDesktop'
@@ -30,9 +31,21 @@ const TURN_STEPS = [
   { command: 'SLIGHT', direction: 'LEFT', street: 'Western Ave.', rotation: -45 },
 ]
 
-const START_POS = { top: '32%', left: '20%' }
-const END_POS = { top: '74%', left: '55%' }
-const MY_LOCATION_POS = { top: '46%', left: '26%' }
+// Faux route geometry for the static prototype map - percentages within the
+// map container, the same coordinate space MapMarker's top/left use. Not
+// real geography; swap for actual routing output once map integration lands.
+const ROUTE_START = { x: 20, y: 32 }
+const ROUTE_END = { x: 55, y: 74 }
+const MY_LOCATION = { x: 26, y: 46 }
+
+const ROUTE_PATH_POINTS = [
+  ROUTE_START,
+  { x: ROUTE_START.x, y: MY_LOCATION.y },
+  MY_LOCATION,
+  { x: MY_LOCATION.x, y: 60 },
+  { x: ROUTE_END.x, y: 60 },
+  ROUTE_END,
+]
 
 function TurnArrow({ rotation, size = 32, color = 'white' }) {
   return (
@@ -684,33 +697,49 @@ function RouteView() {
         overflow: 'hidden',
       }}
     >
+      {/* Map viewport: on desktop this starts clear of the panel, same as a
+          real map app's viewport excludes its sidebar, so marker/route
+          percentages describe a position within the visible map, not the
+          area hidden under the panel. */}
       <div
         style={{
           position: 'absolute',
-          inset: 0,
-          backgroundImage: `url(${import.meta.env.BASE_URL}map-image-for-prototype.png.png)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: isDesktop ? DESKTOP_PANEL_WIDTH : 0,
+          overflow: 'hidden',
         }}
-      />
-
-      {route && (
-        <>
-          <MapMarker type="route-end" style={{ top: START_POS.top, left: START_POS.left }} label="Route start" />
-          <MapMarker type="route-end" style={{ top: END_POS.top, left: END_POS.left }} label="Route end" />
-          <MapMarker type="location" style={{ top: MY_LOCATION_POS.top, left: MY_LOCATION_POS.left }} label="My location" />
-        </>
-      )}
-
-      {hazards.map((h) => (
-        <MapMarker
-          key={h.id}
-          type={h.type}
-          style={{ top: `${h.y}%`, left: `${h.x}%`, opacity: h.resolved ? 0.4 : 1 }}
-          label={h.description}
-          onClick={() => setViewingHazardId(h.id)}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `url(${import.meta.env.BASE_URL}map-image-for-prototype.png.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         />
-      ))}
+
+        {route && (
+          <>
+            <RoutePath points={ROUTE_PATH_POINTS} />
+            <MapMarker type="route-end" style={{ top: `${ROUTE_START.y}%`, left: `${ROUTE_START.x}%` }} label="Route start" />
+            <MapMarker type="route-end" style={{ top: `${ROUTE_END.y}%`, left: `${ROUTE_END.x}%` }} label="Route end" />
+            <MapMarker type="location" style={{ top: `${MY_LOCATION.y}%`, left: `${MY_LOCATION.x}%` }} label="My location" />
+          </>
+        )}
+
+        {hazards.map((h) => (
+          <MapMarker
+            key={h.id}
+            type={h.type}
+            style={{ top: `${h.y}%`, left: `${h.x}%`, opacity: h.resolved ? 0.4 : 1 }}
+            label={h.description}
+            onClick={() => setViewingHazardId(h.id)}
+          />
+        ))}
+      </div>
 
       {isDesktop ? (
         <DesktopRoutePanel
