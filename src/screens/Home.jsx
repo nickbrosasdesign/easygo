@@ -5,7 +5,7 @@ import MapFooter from '../components/MapFooter'
 
 function Home() {
   return (
-    <div style={{ position: 'relative', width: '100%', minHeight: '100vh', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
       <div
         style={{
           position: 'absolute',
@@ -18,23 +18,31 @@ function Home() {
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
       </div>
 
+      {/* Main (logo + nav): ~75% of viewport height. Footer: ~12%. The
+          remaining ~13% between them shows the map peeking through. */}
       <div
         style={{
-          position: 'relative',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '75vh',
           background: 'var(--primitive-blue-100)',
           borderBottom: '4px solid var(--primitive-blue-400)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
           gap: 'var(--spacing-large)',
-          padding: '0 var(--spacing-large) var(--spacing-large)',
+          padding: '0 var(--spacing-large)',
+          overflowY: 'auto',
         }}
       >
         <Header variant="main" />
         <Nav />
       </div>
 
-      <MapFooter>
+      <MapFooter minHeight="12vh">
         <Link
           to="/route"
           className="eg-btn eg-btn-primary eg-btn-primary-size"

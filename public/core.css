@@ -73,22 +73,22 @@
     --weight-900: 900;
 
 
-    /* --- Primitives: 4px Grid --- */
+    /* --- Primitives: 4px Grid (rem, 1rem = 16px root) --- */
 
-    --grid-4:   4px;
-    --grid-8:   8px;
-    --grid-10:  10px;
-    --grid-12:  12px;
-    --grid-14:  14px;
-    --grid-16:  16px;
-    --grid-20:  20px;
-    --grid-24:  24px;
-    --grid-28:  28px;
-    --grid-32:  32px;
-    --grid-40:  40px;
-    --grid-48:  48px;
-    --grid-56:  56px;
-    --grid-64:  64px;
+    --grid-4:   0.25rem;
+    --grid-8:   0.5rem;
+    --grid-10:  0.625rem;
+    --grid-12:  0.75rem;
+    --grid-14:  0.875rem;
+    --grid-16:  1rem;
+    --grid-20:  1.25rem;
+    --grid-24:  1.5rem;
+    --grid-28:  1.75rem;
+    --grid-32:  2rem;
+    --grid-40:  2.5rem;
+    --grid-48:  3rem;
+    --grid-56:  3.5rem;
+    --grid-64:  4rem;
 
 
     /* --- Semantic: Background --- */
@@ -248,36 +248,36 @@
     --color-map-header-text-primary: var(--primitive-base-white);
 
 
-    /* --- Typography --- */
+    /* --- Typography (rem, 1rem = 16px root) --- */
 
-    --type-heading-h1: 32px;
-    --type-heading-h2: 28px;
-    --type-heading-h3: 24px;
-    --type-heading-h4: 20px;
-    --type-heading-h5: 16px;
+    --type-heading-h1: 2rem;
+    --type-heading-h2: 1.75rem;
+    --type-heading-h3: 1.5rem;
+    --type-heading-h4: 1.25rem;
+    --type-heading-h5: 1rem;
 
-    --type-body-primary: 16px;
-    --type-body-small:   14px;
-    --type-body-caption: 12px;
+    --type-body-primary: 1rem;
+    --type-body-small:   0.875rem;
+    --type-body-caption: 0.75rem;
 
-    --type-button-primary: 16px;
-    --type-button-small:   12px;
-
-
-    /* --- Spacing --- */
-
-    --spacing-xs:     4px;
-    --spacing-small:  8px;
-    --spacing-medium: 16px;
-    --spacing-24:     24px;
-    --spacing-large:  32px;
+    --type-button-primary: 1rem;
+    --type-button-small:   0.75rem;
 
 
-    /* --- Corner Radius --- */
+    /* --- Spacing (rem, 1rem = 16px root) --- */
 
-    --radius-small:  8px;
-    --radius-medium: 16px;
-    --radius-large:  32px;
+    --spacing-xs:     0.25rem;
+    --spacing-small:  0.5rem;
+    --spacing-medium: 1rem;
+    --spacing-24:     1.5rem;
+    --spacing-large:  2rem;
+
+
+    /* --- Corner Radius (rem, 1rem = 16px root) --- */
+
+    --radius-small:  0.5rem;
+    --radius-medium: 1rem;
+    --radius-large:  2rem;
 }
 
 
@@ -285,6 +285,16 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+/* Small/short phones: shrink the rem baseline so every spacing, radius,
+   and type token (all rem-based above) scales down together instead of
+   needing per-component overrides at the low end. */
+@media (max-width: 380px), (max-height: 700px) {
+    html {
+        font-size: 14px;
+    }
 }
 
 body {
@@ -293,7 +303,7 @@ body {
     background: #f5f5f3;
     color: var(--primitive-base-black);
     line-height: 1.6;
-    font-size: 15px;
+    font-size: 1rem;
 }
 
 .eg-screen-title {
@@ -1404,17 +1414,18 @@ h2.section:first-of-type {
 .eg-nav {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-large);
-    width: 366px;
+    gap: 0.875rem;
+    width: 100%;
+    max-width: 22.875rem;
 }
 
 .eg-nav-item {
     display: flex;
     align-items: center;
-    gap: var(--spacing-24);
+    gap: 1rem;
     cursor: pointer;
     text-decoration: none;
-    padding: var(--spacing-small);
+    padding: 0.375rem;
     border-radius: var(--radius-medium);
     transition: background 0.12s;
 }
@@ -1424,8 +1435,8 @@ h2.section:first-of-type {
 }
 
 .eg-nav-icon {
-    width: 64px;
-    height: 64px;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     background: var(--primitive-blue-400);
     display: flex;
@@ -1433,11 +1444,11 @@ h2.section:first-of-type {
     justify-content: center;
     flex-shrink: 0;
     color: white;
-    font-size: 26px;
+    font-size: 1.25rem;
 }
 
 .eg-nav-label {
-    font-size: 24px;
+    font-size: 1.125rem;
     font-weight: var(--weight-700);
     color: var(--color-body-text-secondary);
     white-space: nowrap;

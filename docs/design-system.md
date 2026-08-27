@@ -40,81 +40,81 @@ colors:
 typography:
   h1:
     fontFamily: Lexend
-    fontSize: 32px
+    fontSize: 2rem
     fontWeight: 700
     lineHeight: 1.25
   h2:
     fontFamily: Lexend
-    fontSize: 28px
+    fontSize: 1.75rem
     fontWeight: 700
     lineHeight: 1.25
   h3:
     fontFamily: Lexend
-    fontSize: 24px
+    fontSize: 1.5rem
     fontWeight: 700
     lineHeight: 32px
   h4:
     fontFamily: Lexend
-    fontSize: 20px
+    fontSize: 1.25rem
     fontWeight: 700
     lineHeight: 32px
   h5:
     fontFamily: Lexend
-    fontSize: 16px
+    fontSize: 1rem
     fontWeight: 700
     lineHeight: 24px
   body-primary:
     fontFamily: Lexend
-    fontSize: 16px
+    fontSize: 1rem
     fontWeight: 400
     lineHeight: 24px
   body-small:
     fontFamily: Lexend
-    fontSize: 14px
+    fontSize: 0.875rem
     fontWeight: 400
     lineHeight: 24px
   body-caption:
     fontFamily: Lexend
-    fontSize: 12px
+    fontSize: 0.75rem
     fontWeight: 400
     lineHeight: 16px
   button-primary:
     fontFamily: Lexend
-    fontSize: 16px
+    fontSize: 1rem
     fontWeight: 400
     lineHeight: 24px
   button-small:
     fontFamily: Lexend
-    fontSize: 12px
+    fontSize: 0.75rem
     fontWeight: 400
     lineHeight: 16px
 
 spacing:
-  xs: 4px
-  sm: 8px
-  md: 16px
-  lg: 32px
-  24: 24px
+  xs: 0.25rem
+  sm: 0.5rem
+  md: 1rem
+  lg: 2rem
+  24: 1.5rem
   # 4px grid reference
-  grid-4: 4px
-  grid-8: 8px
-  grid-10: 10px
-  grid-12: 12px
-  grid-14: 14px
-  grid-16: 16px
-  grid-20: 20px
-  grid-24: 24px
-  grid-28: 28px
-  grid-32: 32px
-  grid-40: 40px
-  grid-48: 48px
-  grid-56: 56px
-  grid-64: 64px
+  grid-4: 0.25rem
+  grid-8: 0.5rem
+  grid-10: 0.625rem
+  grid-12: 0.75rem
+  grid-14: 0.875rem
+  grid-16: 1rem
+  grid-20: 1.25rem
+  grid-24: 1.5rem
+  grid-28: 1.75rem
+  grid-32: 2rem
+  grid-40: 2.5rem
+  grid-48: 3rem
+  grid-56: 3.5rem
+  grid-64: 4rem
 
 rounded:
-  sm: 8px
-  md: 16px
-  lg: 32px
+  sm: 0.5rem
+  md: 1rem
+  lg: 2rem
 
 breakpoints:
   desktop: 480px
@@ -298,20 +298,36 @@ Lexend Mega (display weight) is used for the EasyGo wordmark only.
 ## Layout
 
 EasyGo is a mobile-first application designed for a 390px viewport (iPhone
-standard). All spacing values derive from a **4px base grid**. Named spacing
-tokens are:
+standard). All spacing, typography, and corner-radius tokens are defined in
+**rem** (1rem = 16px at the default root font size) rather than fixed px, so
+they scale together instead of needing per-component overrides. Named
+spacing tokens are:
 
-- `spacing/xs` → 4px — icon-to-text micro-gaps, internal padding of small
-  elements
-- `spacing/small` → 8px — button vertical padding, tight component gaps
-- `spacing/medium` → 16px — standard internal padding, gap between elements
-  in a row
-- `spacing/24` → 24px — nav item icon-to-label gap
-- `spacing/large` → 32px — card left/right padding, section spacing
+- `spacing/xs` → 0.25rem (4px) — icon-to-text micro-gaps, internal padding
+  of small elements
+- `spacing/small` → 0.5rem (8px) — button vertical padding, tight component
+  gaps
+- `spacing/medium` → 1rem (16px) — standard internal padding, gap between
+  elements in a row
+- `spacing/24` → 1.5rem (24px) — nav item icon-to-label gap
+- `spacing/large` → 2rem (32px) — card left/right padding, section spacing
+
+On small or short phones (`max-width: 380px` or `max-height: 700px`), the
+root font size steps down from 16px to 14px, shrinking every rem-based token
+proportionally — this is the primary lever for fitting content on smaller
+screens, rather than hand-tuning individual components. Component
+dimensions not tied to a token (fixed pixel widths/heights like button or
+input heights) still use px and are unaffected by this scaling.
 
 Maximum content width within cards and dialogs is **366px** (matching the
 reference frame width in Figma, accounting for 16px margins on a 390px
 screen). Dialog overlays use 430–462px widths at full mobile width.
+
+The Home screen uses a fixed three-band height split rather than natural
+content flow, to guarantee the bottom CTA is always visible: the logo+nav
+section is ~75% of viewport height (internally scrollable as a fallback if
+content still doesn't fit), the map peeks through for the next ~13%, and the
+bottom map-action bar takes the final ~12%.
 
 The app has two breakpoints:
 
@@ -479,9 +495,11 @@ Arrows: disabled at first/last page (opacity 0.4).
 The primary navigation menu lists five sections:
 New Route · My Saved Routes · Agency Resources · Accessibility Info · Settings
 
-Each nav item: 64px circular icon + 24px bold Lexend label, `spacing/24` gap.
-Nav item padding: `spacing/small`. Hover: translucent blue background.
-The full nav component is 366px wide × 448px tall and renders on a dark background.
+Each nav item: 3rem (48px) circular icon + 1.125rem bold Lexend label, 1rem
+gap. Nav item padding: 0.375rem. Hover: translucent blue background. The nav
+list is 22.875rem (366px) max-width and ~356px tall at the default root font
+size (down from an earlier 64px-icon/448px-tall version that didn't fit
+shorter phones) — renders on whichever screen background it sits in.
 
 ---
 
