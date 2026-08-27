@@ -720,6 +720,48 @@ h2.section:first-of-type {
 }
 
 
+/* ── ROUTE ACTION button (desktop Route/Map panel) ─────────────── */
+
+.eg-route-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--font-lexend);
+}
+
+.eg-route-action-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-button-bg-secondary);
+    color: var(--color-button-text-secondary);
+    border: 1px solid var(--color-button-border-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background 0.15s;
+}
+
+.eg-route-action:hover .eg-route-action-icon {
+    background: var(--color-button-hover-secondary);
+}
+
+.eg-route-action-label {
+    max-width: 80px;
+    font-size: var(--type-body-small);
+    font-weight: var(--weight-700);
+    color: var(--primitive-blue-400);
+    text-align: center;
+    line-height: 1.2;
+}
+
+
 /* ── TOGGLE component ───────────────────────────────────────── */
 
 .eg-toggle {
