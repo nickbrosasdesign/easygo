@@ -235,12 +235,29 @@ function DesktopTurnStep({ step, index, active }) {
         gap: 'var(--spacing-medium)',
         alignItems: 'flex-start',
         padding: 'var(--spacing-small)',
-        borderRadius: 'var(--radius-medium)',
+        borderRadius: 0,
         background: active ? 'var(--primitive-blue-100)' : 'transparent',
         borderLeft: `4px solid ${active ? 'var(--primitive-blue-400)' : 'transparent'}`,
       }}
     >
-      <TurnArrow rotation={step.rotation} color="var(--primitive-blue-400)" size={28} />
+      <span
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+          width: 36,
+          height: 36,
+          borderRadius: '50%',
+          background: active ? 'var(--primitive-blue-400)' : 'transparent',
+        }}
+      >
+        <TurnArrow
+          rotation={step.rotation}
+          color={active ? 'var(--primitive-base-white)' : 'var(--primitive-blue-400)'}
+          size={active ? 20 : 28}
+        />
+      </span>
       <div>
         <p style={{ margin: 0, fontWeight: 700, fontSize: 14, color: 'var(--primitive-blue-400)' }}>
           {index + 1}. {step.command} {step.direction}
@@ -252,12 +269,11 @@ function DesktopTurnStep({ step, index, active }) {
 }
 
 // Desktop replaces the mobile floating dialogs with a single persistent
-// panel that merges the route summary, turn-by-turn preview, and action
-// row into one flow: Start Route first reveals the turns (not started
-// yet), a second press actually starts the route.
-function DesktopRoutePanel({ route, showDetails, onBack, onReveal, onStart, onEnd, onSave, onToggleOverlays, onMarkHazard }) {
+// panel that merges the route summary, turn-by-turn directions, and
+// action row into one flow: the turns are visible as soon as a route is
+// chosen, and Start Route/End Route just toggles the started state.
+function DesktopRoutePanel({ route, onBack, onStart, onEnd, onSave, onToggleOverlays, onMarkHazard }) {
   const started = Boolean(route?.started)
-  const showTurns = showDetails || started
 
   return (
     <div
@@ -342,39 +358,28 @@ function DesktopRoutePanel({ route, showDetails, onBack, onReveal, onStart, onEn
             </div>
           </div>
 
-          {showTurns && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              {TURN_STEPS.map((step, i) => (
-                <DesktopTurnStep key={i} step={step} index={i} active={started && i === 0} />
-              ))}
-            </div>
-          )}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            {TURN_STEPS.map((step, i) => (
+              <DesktopTurnStep key={i} step={step} index={i} active={started && i === 0} />
+            ))}
+          </div>
 
           {started ? (
             <button type="button" className="eg-btn eg-btn-primary eg-btn-primary-size" style={{ width: '100%' }} onClick={onEnd}>
               End Route
             </button>
           ) : (
-            <button
-              type="button"
-              className="eg-btn eg-btn-primary eg-btn-primary-size"
-              style={{ width: '100%' }}
-              onClick={showDetails ? onStart : onReveal}
-            >
+            <button type="button" className="eg-btn eg-btn-primary eg-btn-primary-size" style={{ width: '100%' }} onClick={onStart}>
               <FontAwesomeIcon icon={faPlay} /> Start Route
             </button>
           )}
 
-          {(!showDetails || started) && (
-            <>
-              <hr className="eg-divider-h" style={{ margin: 0 }} />
-              <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <RouteActionButton icon={faStar} label="Save Route" onClick={onSave} />
-                <RouteActionButton icon={faEye} label="View Overlays" onClick={onToggleOverlays} />
-                <RouteActionButton icon={faTriangleExclamation} label="Mark Hazard" onClick={onMarkHazard} />
-              </div>
-            </>
-          )}
+          <hr className="eg-divider-h" style={{ margin: 0 }} />
+          <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+            <RouteActionButton icon={faStar} label="Save Route" onClick={onSave} />
+            <RouteActionButton icon={faEye} label="View Overlays" onClick={onToggleOverlays} />
+            <RouteActionButton icon={faTriangleExclamation} label="Mark Hazard" onClick={onMarkHazard} />
+          </div>
         </div>
       )}
     </div>
@@ -710,12 +715,7 @@ function RouteView() {
       {isDesktop ? (
         <DesktopRoutePanel
           route={route}
-          showDetails={showDetails}
-          onBack={() => {
-            setShowDetails(false)
-            navigate('/new-route')
-          }}
-          onReveal={() => setShowDetails(true)}
+          onBack={() => navigate('/new-route')}
           onStart={() => actions.setCurrentRoute({ ...route, started: true })}
           onEnd={() => {
             actions.setCurrentRoute({ ...route, started: false })
