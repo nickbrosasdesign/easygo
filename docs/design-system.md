@@ -116,6 +116,12 @@ rounded:
   md: 16px
   lg: 32px
 
+breakpoints:
+  desktop: 480px
+
+layout:
+  sidebar-max-width: 408px
+
 components:
   button:
     font: "{typography.button-primary}"
@@ -307,9 +313,28 @@ Maximum content width within cards and dialogs is **366px** (matching the
 reference frame width in Figma, accounting for 16px margins on a 390px
 screen). Dialog overlays use 430–462px widths at full mobile width.
 
-The layout uses no responsive breakpoints within the app itself. External
-documentation pages (like this design system) use a sidebar + content
-layout.
+The app has two breakpoints:
+
+- **Mobile (< 480px):** Single-column, full-width screens — the layout
+  described above. Sizing/scaling within this breakpoint is still being
+  refined screen by screen.
+- **Desktop (≥ 480px):** A persistent app shell — a left sidebar (max
+  **408px**, full viewport height, independently scrollable) holding
+  whichever screen is currently routed, and a map panel filling the
+  remaining width to the right. The root screen shows the New Route form
+  (inputs + route options) in the sidebar instead of the mobile Home
+  nav-hub, since the inputs are always present and replace the "New Route"
+  nav item. Every other screen renders the same way — inside the sidebar,
+  next to the persistent map — **except** the Route/Map screen (`/route`),
+  which goes full-bleed: it owns the real map surface (markers, hazard
+  pins, floating route dialogs), so on desktop it fills the whole viewport
+  instead of splitting into sidebar + map pane. Its floating dialogs stay
+  pinned to a 408px-wide left column so they read the same as the sidebar
+  everywhere else, even though they're floating over the map rather than
+  embedded in a fixed panel.
+
+External documentation pages (like this design system) use their own
+sidebar + content layout, unrelated to the app shell above.
 
 ---
 

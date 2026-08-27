@@ -13,6 +13,14 @@ import MapMarker from '../components/MapMarker'
 import MapFooter from '../components/MapFooter'
 import CheckRow from '../components/CheckRow'
 import { useAppState } from '../state/AppStateContext'
+import { useIsDesktop } from '../hooks/useIsDesktop'
+
+// On desktop this screen goes full-bleed (see AppShell) - its floating
+// dialogs stay pinned to a left-hand column of this width instead of
+// stretching across the whole map, matching the sidebar width used
+// everywhere else in the app.
+const DESKTOP_PANEL_WIDTH = 408
+const DESKTOP_PANEL_MARGIN = 16
 
 const TURN_STEPS = [
   { command: 'CONTINUE', direction: 'STRAIGHT', street: 'on Aloha St.', rotation: 0 },
@@ -45,22 +53,38 @@ function TurnArrow({ rotation, size = 32 }) {
   )
 }
 
-function RouteDialog({ route, onBack, onShowDetails, onStart, onEnd }) {
+function RouteDialog({ route, isDesktop, onBack, onShowDetails, onStart, onEnd }) {
   return (
     <div
-      style={{
-        position: 'absolute',
-        top: 64,
-        left: 8,
-        right: 8,
-        background: 'var(--primitive-blue-400)',
-        borderRadius: 'var(--radius-large)',
-        boxShadow: '0px 0px 2px rgba(0,0,0,0.5)',
-        padding: 'var(--spacing-medium) var(--spacing-large)',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-medium)',
-      }}
+      style={
+        isDesktop
+          ? {
+              position: 'absolute',
+              top: 24,
+              left: DESKTOP_PANEL_MARGIN,
+              width: DESKTOP_PANEL_WIDTH - DESKTOP_PANEL_MARGIN * 2,
+              background: 'var(--primitive-blue-400)',
+              borderRadius: 'var(--radius-large)',
+              boxShadow: '0px 0px 2px rgba(0,0,0,0.5)',
+              padding: 'var(--spacing-medium) var(--spacing-large)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--spacing-medium)',
+            }
+          : {
+              position: 'absolute',
+              top: 64,
+              left: 8,
+              right: 8,
+              background: 'var(--primitive-blue-400)',
+              borderRadius: 'var(--radius-large)',
+              boxShadow: '0px 0px 2px rgba(0,0,0,0.5)',
+              padding: 'var(--spacing-medium) var(--spacing-large)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--spacing-medium)',
+            }
+      }
     >
       <button
         type="button"
@@ -142,14 +166,15 @@ function RouteDialog({ route, onBack, onShowDetails, onStart, onEnd }) {
   )
 }
 
-function RouteDetailsOverlay({ onBack, onStart }) {
+function RouteDetailsOverlay({ isDesktop, onBack, onStart }) {
   return (
     <div
       style={{
         position: 'absolute',
-        top: 64,
-        left: 8,
-        right: 8,
+        top: isDesktop ? 24 : 64,
+        left: isDesktop ? DESKTOP_PANEL_MARGIN : 8,
+        right: isDesktop ? 'auto' : 8,
+        width: isDesktop ? DESKTOP_PANEL_WIDTH - DESKTOP_PANEL_MARGIN * 2 : 'auto',
         bottom: 96,
         background: 'var(--primitive-blue-400)',
         borderRadius: 'var(--radius-large)',
@@ -469,6 +494,7 @@ function SaveRouteModal({ route, onCancel, onSave }) {
 
 function RouteView() {
   const navigate = useNavigate()
+  const isDesktop = useIsDesktop()
   const { state, actions } = useAppState()
   const { currentRoute: route, hazards } = state
 
@@ -488,7 +514,16 @@ function RouteView() {
   const viewingHazard = hazards.find((h) => h.id === viewingHazardId)
 
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 430, margin: '0 auto', minHeight: '100vh', overflow: 'hidden' }}>
+    <div
+      style={{
+        position: 'relative',
+        width: '100%',
+        maxWidth: isDesktop ? 'none' : 430,
+        margin: '0 auto',
+        minHeight: '100vh',
+        overflow: 'hidden',
+      }}
+    >
       <div
         style={{
           position: 'absolute',
@@ -519,6 +554,7 @@ function RouteView() {
 
       {showDetails && route ? (
         <RouteDetailsOverlay
+          isDesktop={isDesktop}
           onBack={() => setShowDetails(false)}
           onStart={() => {
             actions.setCurrentRoute({ ...route, started: true })
@@ -528,6 +564,7 @@ function RouteView() {
       ) : (
         <RouteDialog
           route={route}
+          isDesktop={isDesktop}
           onBack={() => navigate('/new-route')}
           onShowDetails={() => setShowDetails(true)}
           onStart={() => actions.setCurrentRoute({ ...route, started: true })}
@@ -568,7 +605,7 @@ function RouteView() {
       )}
 
       {!showDetails && (
-        <MapFooter>
+        <MapFooter maxWidth={isDesktop ? DESKTOP_PANEL_WIDTH : undefined}>
           {route && (
             <button
               type="button"

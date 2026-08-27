@@ -6,6 +6,7 @@ import Header from '../components/Header'
 import CheckRow from '../components/CheckRow'
 import Nav from '../components/Nav'
 import { useAppState } from '../state/AppStateContext'
+import { useIsDesktop } from '../hooks/useIsDesktop'
 
 const MOCK_ADDRESSES = [
   '1234 Pine St, Seattle WA 98101',
@@ -134,6 +135,7 @@ function AddressField({ icon, placeholder, value, onChange }) {
 
 function NewRoute() {
   const navigate = useNavigate()
+  const isDesktop = useIsDesktop()
   const { actions } = useAppState()
   const [origin, setOrigin] = useState('')
   const [destination, setDestination] = useState('')
@@ -158,7 +160,7 @@ function NewRoute() {
   return (
     <div
       style={{
-        maxWidth: 375,
+        maxWidth: isDesktop ? 'none' : 375,
         margin: '0 auto',
         background: 'var(--primitive-blue-100)',
         minHeight: '100vh',

@@ -1,4 +1,4 @@
-function MapFooter({ collapsed = false, children }) {
+function MapFooter({ collapsed = false, children, maxWidth }) {
   if (collapsed) return null
 
   return (
@@ -8,6 +8,7 @@ function MapFooter({ collapsed = false, children }) {
         bottom: 0,
         left: 0,
         width: '100%',
+        maxWidth,
         background: 'var(--primitive-blue-400)',
         boxShadow: '0px -4px 8px rgba(0,0,0,0.25)',
         display: 'flex',
