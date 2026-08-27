@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faMapPin } from '@fortawesome/free-solid-svg-icons'
@@ -18,75 +18,81 @@ const MOCK_ADDRESSES = [
 ]
 
 function AddressField({ icon, placeholder, value, onChange }) {
-  const [editing, setEditing] = useState(false)
-  const [draft, setDraft] = useState('')
+  const [open, setOpen] = useState(false)
   const [dropPin, setDropPin] = useState(false)
+  const wrapRef = useRef(null)
 
-  const suggestions = draft
-    ? MOCK_ADDRESSES.filter((a) => a.toLowerCase().includes(draft.toLowerCase()))
+  useEffect(() => {
+    function onOutsideClick(e) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+        setOpen(false)
+        setDropPin(false)
+      }
+    }
+    document.addEventListener('click', onOutsideClick)
+    return () => document.removeEventListener('click', onOutsideClick)
+  }, [])
+
+  const suggestions = value
+    ? MOCK_ADDRESSES.filter((a) => a.toLowerCase().includes(value.toLowerCase()))
     : MOCK_ADDRESSES
 
   function choose(address) {
     onChange(address)
-    setEditing(false)
-    setDraft('')
-  }
-
-  if (!editing) {
-    return (
-      <button
-        type="button"
-        className="eg-select-btn"
-        style={{ justifyContent: 'flex-start', gap: 'var(--spacing-medium)' }}
-        onClick={() => setEditing(true)}
-      >
-        {icon}
-        <span
-          className="eg-select-btn-text"
-          style={{ color: value ? 'var(--primitive-base-black)' : 'var(--primitive-grey-300)', textAlign: 'left' }}
-        >
-          {value || placeholder}
-        </span>
-      </button>
-    )
+    setOpen(false)
+    setDropPin(false)
   }
 
   return (
-    <div style={{ position: 'relative' }}>
-      <input
-        className="eg-input"
-        autoFocus
-        placeholder={placeholder}
-        value={draft}
-        onChange={(e) => setDraft(e.target.value)}
-      />
-      <ul className="eg-select-list" role="listbox" aria-label={placeholder}>
-        {suggestions.map((a) => (
-          <li key={a} className="eg-select-option" role="option" onClick={() => choose(a)}>
-            {a}
-          </li>
-        ))}
-        <li
-          className="eg-select-option"
-          role="option"
-          style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--primitive-blue-400)', fontWeight: 600 }}
-          onClick={() => setDropPin(true)}
-        >
-          <FontAwesomeIcon icon={faLocationDot} /> Choose location on map
-        </li>
-      </ul>
+    <div className="eg-address-field" ref={wrapRef}>
+      <div className="eg-address-input-wrap">
+        <span className="eg-address-input-icon" aria-hidden="true">
+          {icon}
+        </span>
+        <input
+          type="text"
+          className="eg-address-input"
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          onFocus={() => setOpen(true)}
+          role="combobox"
+          aria-expanded={open}
+          aria-haspopup="listbox"
+          aria-label={placeholder}
+        />
+      </div>
+
+      {open && !dropPin && (
+        <div className="eg-address-dropdown" role="listbox" aria-label={placeholder}>
+          <div className="eg-address-dropdown-options">
+            {suggestions.length > 0 ? (
+              suggestions.map((a) => (
+                <div key={a} className="eg-address-dropdown-option" role="option" onClick={() => choose(a)}>
+                  {a}
+                </div>
+              ))
+            ) : (
+              <div className="eg-address-dropdown-empty">No matches found</div>
+            )}
+          </div>
+          <button type="button" className="eg-address-dropdown-cta" onClick={() => setDropPin(true)}>
+            <FontAwesomeIcon icon={faLocationDot} aria-hidden="true" /> Choose location on map
+          </button>
+        </div>
+      )}
+
       {dropPin && (
         <div
           style={{
             position: 'absolute',
-            top: '100%',
+            top: 'calc(100% + var(--spacing-xs))',
             left: 0,
             right: 0,
-            zIndex: 101,
-            marginTop: 8,
+            zIndex: 50,
             borderRadius: 'var(--radius-medium)',
             overflow: 'hidden',
-            border: '1px solid var(--primitive-blue-400)',
+            border: '3px solid var(--primitive-blue-400)',
           }}
         >
           <div
@@ -116,10 +122,7 @@ function AddressField({ icon, placeholder, value, onChange }) {
             type="button"
             className="eg-btn eg-btn-primary eg-btn-primary-size"
             style={{ width: '100%', borderRadius: 0 }}
-            onClick={() => {
-              choose('Dropped pin location')
-              setDropPin(false)
-            }}
+            onClick={() => choose('Dropped pin location')}
           >
             Confirm location
           </button>
@@ -155,6 +158,8 @@ function NewRoute() {
   return (
     <div
       style={{
+        maxWidth: 375,
+        margin: '0 auto',
         background: 'var(--primitive-blue-100)',
         minHeight: '100vh',
         display: 'flex',

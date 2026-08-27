@@ -168,6 +168,15 @@ components:
     height: 48px
     radius: "{rounded.md}"
     font: "{typography.body-primary}"
+  address-field:
+    height: 56px
+    radius: "{rounded.md}"
+    font: "{typography.body-primary}"
+    border-default: "{colors.grey-100}"
+    border-focus: "{colors.primary}"
+    focus-border-width: 3px
+    dropdown-border: 3px solid "{colors.primary}"
+    dropdown-radius: "{rounded.md}"
   tooltip:
     font: "{typography.body-caption}"
     radius: "{rounded.sm}"
@@ -454,8 +463,8 @@ The full nav component is 366px wide × 448px tall and renders on a dark backgro
 ### Header
 
 Two variants:
-- **Main:** Full-bleed `blue/400` header with h1 title (white, 32px bold) and
-  subtitle (blue/100, 16px). Used on primary screens. Bottom radius 32px.
+- **Main:** Just the EasyGo logo (200 × 66px), centred, no background. Used on
+  primary screens (Home, New Route); the screen title renders separately below it.
 - **Secondary:** Compact back-navigation bar in `blue/400`. Contains back arrow
   + label on left, screen title centred. Used on sub-screens.
 
