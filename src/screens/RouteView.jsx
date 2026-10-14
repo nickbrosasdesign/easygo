@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -13,10 +13,11 @@ import {
 import Header from '../components/Header'
 import MapMarker from '../components/MapMarker'
 import MapFooter from '../components/MapFooter'
-import RoutePath from '../components/RoutePath'
+import MapLibreMap from '../components/MapLibreMap'
 import CheckRow from '../components/CheckRow'
 import { useAppState } from '../state/AppStateContext'
 import { useIsDesktop } from '../hooks/useIsDesktop'
+import { SEATTLE_CENTER, SEATTLE_BOUNDS, hasMapKey } from '../constants/map'
 
 // On desktop this screen goes full-bleed (see AppShell) - instead of the
 // mobile floating dialogs, a persistent panel this wide sits flush along
@@ -29,22 +30,6 @@ const TURN_STEPS = [
   { command: 'SLIGHT', direction: 'RIGHT', street: 'on 2nd Ave W.', rotation: 45 },
   { command: 'TURN', direction: 'RIGHT', street: 'Thomas St.', rotation: 90 },
   { command: 'SLIGHT', direction: 'LEFT', street: 'Western Ave.', rotation: -45 },
-]
-
-// Faux route geometry for the static prototype map - percentages within the
-// map container, the same coordinate space MapMarker's top/left use. Not
-// real geography; swap for actual routing output once map integration lands.
-const ROUTE_START = { x: 20, y: 32 }
-const ROUTE_END = { x: 55, y: 74 }
-const MY_LOCATION = { x: 26, y: 46 }
-
-const ROUTE_PATH_POINTS = [
-  ROUTE_START,
-  { x: ROUTE_START.x, y: MY_LOCATION.y },
-  MY_LOCATION,
-  { x: MY_LOCATION.x, y: 60 },
-  { x: ROUTE_END.x, y: 60 },
-  ROUTE_END,
 ]
 
 function TurnArrow({ rotation, size = 32, color = 'white' }) {
@@ -686,6 +671,20 @@ function RouteView() {
 
   const viewingHazard = hazards.find((h) => h.id === viewingHazardId)
 
+  const markers = useMemo(
+    () =>
+      hazards.map((h) => ({
+        id: h.id,
+        type: h.type,
+        lat: h.lat,
+        lng: h.lng,
+        label: h.description,
+        opacity: h.resolved ? 0.4 : 1,
+        onClick: () => setViewingHazardId(h.id),
+      })),
+    [hazards]
+  )
+
   return (
     <div
       style={{
@@ -711,34 +710,19 @@ function RouteView() {
           overflow: 'hidden',
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `url(${import.meta.env.BASE_URL}map-image-for-prototype.png.png)`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-
-        {route && (
-          <>
-            <RoutePath points={ROUTE_PATH_POINTS} />
-            <MapMarker type="route-end" style={{ top: `${ROUTE_START.y}%`, left: `${ROUTE_START.x}%` }} label="Route start" />
-            <MapMarker type="route-end" style={{ top: `${ROUTE_END.y}%`, left: `${ROUTE_END.x}%` }} label="Route end" />
-            <MapMarker type="location" style={{ top: `${MY_LOCATION.y}%`, left: `${MY_LOCATION.x}%` }} label="My location" />
-          </>
-        )}
-
-        {hazards.map((h) => (
-          <MapMarker
-            key={h.id}
-            type={h.type}
-            style={{ top: `${h.y}%`, left: `${h.x}%`, opacity: h.resolved ? 0.4 : 1 }}
-            label={h.description}
-            onClick={() => setViewingHazardId(h.id)}
+        {hasMapKey ? (
+          <MapLibreMap center={SEATTLE_CENTER} zoom={15} maxBounds={SEATTLE_BOUNDS} markers={markers} />
+        ) : (
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url(${import.meta.env.BASE_URL}map-image-for-prototype.png.png)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
           />
-        ))}
+        )}
       </div>
 
       {isDesktop ? (
@@ -836,7 +820,12 @@ function RouteView() {
           isDesktop={isDesktop}
           onCancel={() => setShowMarkHazard(false)}
           onSubmit={({ type, description }) => {
-            actions.addHazard({ type, description, x: 40 + Math.random() * 20, y: 40 + Math.random() * 20 })
+            actions.addHazard({
+              type,
+              description,
+              lat: SEATTLE_CENTER.lat + (Math.random() - 0.5) * 0.004,
+              lng: SEATTLE_CENTER.lng + (Math.random() - 0.5) * 0.004,
+            })
             setShowMarkHazard(false)
           }}
         />

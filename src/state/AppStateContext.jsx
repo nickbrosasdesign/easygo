@@ -24,8 +24,22 @@ const defaultState = {
     },
   },
   hazards: [
-    { id: 'h1', x: 38, y: 44, type: 'hazard-stop', description: 'Sidewalk closed for construction', resolved: false },
-    { id: 'h2', x: 62, y: 58, type: 'hazard-warn', description: 'Raised crack from tree root damage', resolved: false },
+    {
+      id: 'h1',
+      lat: 47.6255,
+      lng: -122.3568,
+      type: 'hazard-stop',
+      description: 'Sidewalk closed for construction',
+      resolved: false,
+    },
+    {
+      id: 'h2',
+      lat: 47.6215,
+      lng: -122.353,
+      type: 'hazard-warn',
+      description: 'Raised crack from tree root damage',
+      resolved: false,
+    },
   ],
   currentRoute: null,
 }

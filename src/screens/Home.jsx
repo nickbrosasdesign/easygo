@@ -2,19 +2,26 @@ import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
 import MapFooter from '../components/MapFooter'
+import MapLibreMap from '../components/MapLibreMap'
+import { SEATTLE_CENTER, SEATTLE_BOUNDS, hasMapKey } from '../constants/map'
 
 function Home() {
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `url(${import.meta.env.BASE_URL}map-image-for-prototype.png.png)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      <div style={{ position: 'absolute', inset: 0 }}>
+        {hasMapKey ? (
+          <MapLibreMap center={SEATTLE_CENTER} zoom={12} maxBounds={SEATTLE_BOUNDS} interactive={false} />
+        ) : (
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url(${import.meta.env.BASE_URL}map-image-for-prototype.png.png)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+        )}
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
       </div>
 

@@ -6,6 +6,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/easygo/',
   plugins: [react()],
+  // maplibre-gl loads its own web worker via a relative import.meta.url - Vite's
+  // esbuild dep pre-bundling rewrites that in a way that breaks the worker load
+  // (it hangs pending forever, so no vector tiles ever get parsed/rendered).
+  optimizeDeps: {
+    exclude: ['maplibre-gl'],
+  },
   build: {
     rollupOptions: {
       input: {
